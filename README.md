@@ -1,53 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# sayed.portfolio
 
-## Getting Started
+Personal portfolio of Sayed Esmail, Senior Frontend Engineer (Vue/Nuxt, React/Next.js, TypeScript), Cairo.
 
-First, run the development server:
+Live: **https://sayed5atab-gilt.vercel.app/**
+
+- `/` featured case studies, `/projects` and `/projects/[slug]` company and freelance work (data in `src/data/`), `/about`, `/articles`.
+- `/portfolio` is a print layout of the same work data; it is exported to `public/Sayed_Esmail_Portfolio.pdf` and linked from the site.
+- Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4. No CMS, no runtime data fetching: everything is static content in `src/data/work.ts`, `src/data/projects.ts` and `src/data/articles.ts`.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+pnpm dev        # http://localhost:3000
+pnpm lint
+pnpm build
+```
+
+## Regenerate the portfolio PDF
+
+The PDF is rendered from the running site with a headless Chrome driven by `agent-browser` (fetched via `npx`), so run the dev server (or `pnpm build && pnpm start`) first:
+
+```bash
 pnpm dev
-# or
-bun dev
+# in a second terminal
+pnpm portfolio:pdf
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Options: `PORTFOLIO_ORIGIN` (default `http://localhost:3000`) if the site runs elsewhere, and `CHROME_PATH` to point at a specific Chrome/Chromium binary. The script waits for fonts and lazy images before printing, then writes `public/Sayed_Esmail_Portfolio.pdf`. Re-run it whenever the work data changes and commit the new PDF.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Pushes to `main` deploy to Vercel. Project work screenshots live under `public/projects/`.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Portfolio content and PDF
-
-- `src/data/work.ts`: company and freelance work; source for project cards, experience, and the PDF preview.
-- `src/data/projects.ts`: the three featured technical case studies.
-- `docs/portfolio-plan.md`: implementation plan and content still needed.
-- `docs/content-audit.md`: resume reconciliation and screenshot provenance.
-- `/portfolio`: nine-page print preview; `/Sayed_Esmail_Portfolio.pdf`: downloadable export.
-- `/Sayed_Esmail_Resume.pdf`: the user-supplied resume (kept unchanged).
-
-Install with `corepack pnpm install --frozen-lockfile` (pnpm 8.15.9 is pinned), then run `npm run dev`. In another terminal, regenerate the PDF with:
-
-```sh
-CHROME_PATH=/opt/google/chrome/chrome npm run portfolio:pdf
-```
-
-The export uses `npx agent-browser` and an installed Chrome/Chromium. Set `CHROME_PATH` for your system or omit it to use agent-browser's configured browser. Set `PORTFOLIO_ORIGIN` if the running server is not at `http://localhost:3000`. Regenerate and inspect the PDF whenever project content or screenshots change, and commit the resulting file along with the source.
+© 2026 Sayed Esmail. Content and images are personal work; not licensed for reuse.
