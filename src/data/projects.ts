@@ -217,7 +217,7 @@ export const projects: Project[] = [
         subtitle: "Personal education platform",
         description:
             "A personal education project connecting families with teachers. The platform combines teacher discovery, location-aware search, flexible lesson pricing, and parent-to-tutor request workflows.",
-        tags: ["Nuxt 3", "Vue 3", "Node.js", "PostgreSQL", "Prisma", "Geolocation"],
+        tags: ["Next.js 16", "React", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Geolocation"],
         heroImage: "/projects/zads/landing-page.png",
         screenshots: [
             {
@@ -247,10 +247,10 @@ export const projects: Project[] = [
         problem:
             "Families need a way to find nearby teachers and request tutoring, while teachers need a place to present their subjects and pricing. Zads brings teacher discovery, location-aware search, lesson pricing, and parent requests into one product.",
         architecture:
-            "Built the backend with Node.js, Express, Prisma ORM, and PostgreSQL. The customer web app and admin dashboards use Nuxt 3 and Vue 3, with CASL access control and Firebase push notifications. A migration toward a unified Next.js and React stack has begun.",
-        architectureDiagram: `Customer web app and admin dashboards
-        ├── Nuxt 3 and Vue 3
-        └── Migration toward Next.js and React
+            "Built the backend with Node.js, Express, Prisma ORM, and PostgreSQL, covered by HTTP integration tests that run in GitHub Actions before each Vercel deploy. The web app started on Nuxt 3 and Vuetify and was migrated to a single Next.js 16 App Router app: 42 routes under /[locale], Arabic/English RTL via next-intl, Auth.js v5, CASL role-based access, Server Components on the public pages with a Server Action for contact requests. The full source, including the archived Nuxt apps, is public at github.com/SayedEsmail/zads.",
+        architectureDiagram: `Web app (Next.js 16 App Router on Vercel)
+        ├── /[locale]/public · client · teacher · admin
+        └── Auth.js v5 · CASL · next-intl (ar/en RTL)
                     │
                     ▼
         Node.js and Express backend

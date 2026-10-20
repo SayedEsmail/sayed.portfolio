@@ -27,12 +27,12 @@ export const work: WorkItem[] = [
         description:
             "A fleet-management and school-transportation SaaS platform with admin and client dashboards.",
         contributions: [
-            "Built frontend product workflows for driver management, trip scheduling, billing, and subscriptions.",
-            "Developed live GPS tracking backed by custom Node.js socket services.",
+            "Built the real-time layer end to end: live GPS tracking of active trips and an in-app chat (web backend and frontend plus the mobile apps) connecting operators, passengers, and drivers over custom Node.js socket services.",
+            "Shipped the passenger self-service subscription flow: in-app registration, package selection, and online payment through PayTabs, plus operator workflows for drivers, trips, and billing.",
             "Integrated mapping and geocoding APIs for route planning, location search, and map interactions.",
             "Established shared Vue components and composables for a bilingual Arabic and English interface.",
         ],
-        tags: ["Vue 3", "Node.js sockets", "GPS tracking", "Mapping", "Arabic/English"],
+        tags: ["Vue 3", "Node.js sockets", "Live chat", "GPS tracking", "PayTabs", "Arabic/English"],
         image: {
             src: "/projects/routz/live-tracking.png",
             alt: "Routz live fleet tracking map",
@@ -52,11 +52,12 @@ export const work: WorkItem[] = [
         contributions: [
             "Led frontend architecture, code reviews, and engineer mentoring.",
             "Designed the multi-tenant foundation for client theming, permission roles, and runtime configuration.",
-            "Delivered a schema-driven form builder and drag-and-drop page builder by integrating and customizing SurveyJS and GrapesJS.",
+            "Delivered a schema-driven form builder and drag-and-drop page builder on SurveyJS and GrapesJS, then added an AI layer so clients generate forms and pages from a prompt and run AI screening of submissions before judge review.",
+            "Integrated Stripe so clients can charge participants for submissions.",
             "Improved initial dashboard load time by 40% through Vite build optimization, route-level code splitting, and state-management refactoring.",
-            "Implemented permission-based access control and frontend security practices aligned with ISO requirements.",
+            "Owned frontend security remediation during the ISO 27001:2022 certification: moved auth tokens from localStorage to HTTP-only cookies and replaced vulnerable dependencies until the certificate was granted.",
         ],
-        tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "Vite", "Access control"],
+        tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "AI screening", "Stripe", "ISO 27001"],
         image: {
             src: "/projects/untap/dashboard-overview.png",
             alt: "Untap platform dashboard overview",
@@ -119,14 +120,14 @@ export const work: WorkItem[] = [
         period: "2024–Present",
         role: "Founder & Full-Stack Engineer",
         description:
-            "A multi-app education ecosystem connecting families with teachers through location-aware discovery and tutoring workflows.",
+            "A learning marketplace connecting families and learners with nearby teachers. Migrated from Nuxt 3 to Next.js 16 App Router; source is public on GitHub.",
         contributions: [
-            "Built the backend using Node.js, Express, Prisma ORM, and PostgreSQL.",
+            "Built the backend using Node.js, Express, Prisma ORM, and PostgreSQL, with HTTP integration tests that run in CI before every deploy.",
             "Developed geo-proximity search to match learners with nearby teachers using location mapping and distance routing.",
             "Implemented dynamic pricing and automated tutor requests from parent sign-ups.",
-            "Built the customer web app and admin dashboards in Nuxt 3 and Vue 3, with CASL access control and Firebase push notifications; began a move toward Next.js and React.",
+            "Migrated the product from Nuxt 3/Vuetify to a unified Next.js 16 App Router app: 42 routes, Arabic/English RTL via next-intl, Auth.js v5, CASL role-based access, Server Components on the public pages, deployed on Vercel.",
         ],
-        tags: ["Nuxt 3", "Vue 3", "Node.js", "PostgreSQL", "Prisma", "Geolocation"],
+        tags: ["Next.js 16", "React", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Open source"],
         image: {
             src: "/projects/zads/landing-page.png",
             alt: "Zads education platform landing page",

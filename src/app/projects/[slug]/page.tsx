@@ -355,7 +355,7 @@ export default async function ProjectPage({ params }: PageProps) {
                             Email Sayed
                         </a>
                         <a
-                            href="https://linkedin.com/in/SayedEsmail"
+                            href="https://www.linkedin.com/in/sayed-esmail-khattab"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center font-mono text-xs font-medium text-neutral-300 hover:text-white border border-neutral-800 hover:border-neutral-700 bg-neutral-950/20 px-5 py-3 rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 text-center"

@@ -120,7 +120,7 @@ export default async function ArticlePage({ params }: PageProps) {
                             sayed.5atab@gmail.com
                         </a>
                         <a
-                            href="https://linkedin.com/in/SayedEsmail"
+                            href="https://www.linkedin.com/in/sayed-esmail-khattab"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center justify-center font-mono text-xs font-medium text-neutral-400 hover:text-white transition-colors duration-200"

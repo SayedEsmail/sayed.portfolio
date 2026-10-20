@@ -17,7 +17,7 @@ export default function ContactLinks({ className = "", iconClassName = "" }: Con
         },
         {
             name: "LinkedIn",
-            url: "https://linkedin.com/in/SayedEsmail",
+            url: "https://www.linkedin.com/in/sayed-esmail-khattab",
             aria: "LinkedIn Profile",
             icon: (
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
