@@ -136,6 +136,30 @@ export const work: WorkItem[] = [
         liveUrl: "https://zads.app",
     },
     {
+        slug: "fleet-billing",
+        title: "Fleet Billing (lite)",
+        category: "freelance",
+        employer: "Personal project",
+        period: "2026",
+        role: "Full-Stack Engineer",
+        description:
+            "Subscriptions and billing for a school-bus operator: operators manage buses and trips and see revenue and seat utilization, while parents pick a plan and pay through Stripe Checkout. A portfolio project with synthetic seed data and Stripe in test mode; source is public on GitHub.",
+        contributions: [
+            "Built the web app on Next.js 16 App Router: Server Components for stats, tables, and subscriptions, a Server Action for checkout, and client components for the fleet editor and plan picker, in Arabic and English with RTL via next-intl.",
+            "Built the NestJS API with global auth and role guards, class-validator DTOs, and pure, unit-tested pricing in integer cents (monthly and term plans with sibling discounts).",
+            "Modeled the data with Prisma on Supabase Postgres and used Row Level Security for parent-scoped subscription reads; roles come from a profiles table, never from user metadata.",
+            "Integrated Stripe Checkout with a signed webhook that verifies the signature, cross-checks the charged amount, and activates the subscription once per event id.",
+            "Covered pricing, the webhook, and HTTP e2e with Vitest and web smoke with Playwright; GitHub Actions runs lint, typecheck, tests, migrations, seed, and a Docker build before the Vercel deploys.",
+        ],
+        tags: ["Next.js 16", "NestJS", "Prisma", "Supabase RLS", "Stripe", "Vitest", "Playwright", "Arabic/English"],
+        image: {
+            src: "/projects/fleet-billing/operator-dashboard.png",
+            alt: "Fleet Billing operator dashboard with revenue, seat utilization, and the bus list",
+        },
+        caseStudy: "/projects/fleet-billing",
+        liveUrl: "https://fleet-billing.vercel.app",
+    },
+    {
         slug: "yanfaa",
         title: "Yanfaa",
         category: "freelance",
