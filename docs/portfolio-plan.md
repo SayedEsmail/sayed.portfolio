@@ -6,6 +6,7 @@
 - Present company work and freelance work as two primary sections; place Zads first in the freelance section while retaining its founder attribution.
 - Include Schoolz/Routz, Untap, AutoTager, Botme, and the grouped MoreCreative / Enjaz / MTC / Webdivs experience.
 - Include Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex with explicit personal contributions.
+- Include Fleet Billing (lite), a personal school-bus subscriptions and billing project, after Zads in the freelance section with its own case study and live demo screenshots.
 - Keep all work data in `src/data/work.ts`; case-study depth lives in `src/data/projects.ts`.
 
 ## Presentation
@@ -18,7 +19,7 @@
 
 ## Downloadable materials
 - Keep the supplied resume unchanged and make it downloadable separately.
-- Add `/portfolio`, an nine-page print layout sharing the work data.
+- Add `/portfolio`, a ten-page print layout sharing the work data.
 - Generate `public/Sayed_Esmail_Portfolio.pdf` and link it from navigation, home, work, and about.
 - Re-export the PDF whenever work content changes.
 

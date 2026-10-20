@@ -5,7 +5,7 @@ import DownloadLinks from "@/components/DownloadLinks";
 
 export const metadata: Metadata = {
     title: "Company & Freelance Projects",
-    description: "Explore Sayed Esmail’s company and freelance work: Routz, Untap, AutoTager, Botme, Yanfaa, Wellpal, FundSeer, Kadouscope, Movex, and his own product Zads.",
+    description: "Explore Sayed Esmail’s company and freelance work: Routz, Untap, AutoTager, Botme, Yanfaa, Wellpal, FundSeer, Kadouscope, Movex, and his own projects Zads and Fleet Billing.",
 };
 
 const sections = [

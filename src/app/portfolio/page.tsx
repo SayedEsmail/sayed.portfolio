@@ -23,7 +23,11 @@ export default function PortfolioPage() {
     const featured = work.filter(item => item.category === "company" && item.caseStudy);
     const otherCompanies = work.filter(item => item.category === "company" && !item.caseStudy);
     const freelance = work.filter(item => item.category === "freelance");
-    const freelanceGroups = [freelance.slice(0, 1), freelance.slice(1, 2), freelance.slice(2, 3), freelance.slice(3, 5), freelance.slice(5)];
+    // One page per entry with a screenshot, then the text-only entries two per page.
+    const withImage = freelance.filter(item => item.image);
+    const withoutImage = freelance.filter(item => !item.image);
+    const freelanceGroups = [...withImage.map(item => [item]), withoutImage.slice(0, 2), withoutImage.slice(2)];
+    const lastGroup = freelanceGroups.length - 1;
     return <div className="portfolio-preview">
         <div className="portfolio-toolbar"><p>Portfolio / PDF preview</p><DownloadLinks /></div>
         <div className="portfolio-document">
@@ -31,13 +35,13 @@ export default function PortfolioPage() {
                 <div className="portfolio-page-top"><span>SAYED ESMAIL</span><span>SELECTED WORK / 2026</span></div>
                 <p className="portfolio-kicker">Senior Frontend Engineer</p><h1>Interfaces that<br />make complex<br /><em>products work.</em></h1>
                 <p className="portfolio-summary">10+ years building frontend experiences across SaaS, logistics, education, commerce, and automation. Vue.js, React, TypeScript, and a focus on product delivery.</p>
-                <div className="portfolio-cover-grid"><div><strong>Company work</strong><p>Schoolz / Routz<br />Untap · AutoTager · Botme<br />MoreCreative · Enjaz · MTC · Webdivs</p></div><div><strong>Freelance projects</strong><p>Zads · Yanfaa · Wellpal<br />FundSeer · Kadouscope · Movex</p></div></div>
+                <div className="portfolio-cover-grid"><div><strong>Company work</strong><p>Schoolz / Routz<br />Untap · AutoTager · Botme<br />MoreCreative · Enjaz · MTC · Webdivs</p></div><div><strong>Freelance projects</strong><p>Zads · Fleet Billing · Yanfaa · Wellpal<br />FundSeer · Kadouscope · Movex</p></div></div>
                 <div className="portfolio-cover-contact"><strong>Sayed Esmail · Cairo, Egypt</strong><a href="mailto:sayed.5atab@gmail.com">sayed.5atab@gmail.com</a><a href="https://www.linkedin.com/in/sayed-esmail-khattab">linkedin.com/in/sayed-esmail-khattab</a><a href="https://sayed5atab-gilt.vercel.app/">sayed5atab-gilt.vercel.app</a><a href="https://github.com/SayedEsmail">github.com/SayedEsmail</a></div>
                 <div className="portfolio-page-bottom"><span>Company experience · Freelance delivery · Product ownership</span><span>01</span></div>
             </section>
             {featured.map((item, index) => <section key={item.slug} className="portfolio-sheet"><div className="portfolio-page-top"><span>COMPANY WORK</span><span>SAYED ESMAIL</span></div><Entry item={item} /><div className="portfolio-page-bottom"><span>{item.title} / Selected work</span><span>{String(index + 2).padStart(2, "0")}</span></div></section>)}
             <section className="portfolio-sheet portfolio-compact"><div className="portfolio-page-top"><span>COMPANY EXPERIENCE</span><span>SAYED ESMAIL</span></div>{otherCompanies.map(item => <Entry key={item.slug} item={item} showImage={false} />)}<div className="portfolio-page-bottom"><span>Commerce, automation & agency work</span><span>04</span></div></section>
-            {freelanceGroups.map((group, index) => <section className={index < 3 ? "portfolio-sheet" : "portfolio-sheet portfolio-compact"} key={index}><div className="portfolio-page-top"><span>FREELANCE PROJECTS</span><span>SAYED ESMAIL</span></div>{group.map(item => <Entry key={item.slug} item={item} />)}{index === 4 && <div className="portfolio-outro"><p className="portfolio-kicker">Let’s build what’s next.</p><h2>Thoughtful interfaces.<br />Reliable delivery.</h2><p>Available to discuss frontend engineering, product development, and technical leadership.</p><a href="mailto:sayed.5atab@gmail.com">sayed.5atab@gmail.com</a></div>}<div className="portfolio-page-bottom"><span>Independent products & client engagements</span><span>{String(index + 5).padStart(2, "0")}</span></div></section>)}
+            {freelanceGroups.map((group, index) => <section className={index < withImage.length ? "portfolio-sheet" : "portfolio-sheet portfolio-compact"} key={index}><div className="portfolio-page-top"><span>FREELANCE PROJECTS</span><span>SAYED ESMAIL</span></div>{group.map(item => <Entry key={item.slug} item={item} />)}{index === lastGroup && <div className="portfolio-outro"><p className="portfolio-kicker">Let’s build what’s next.</p><h2>Thoughtful interfaces.<br />Reliable delivery.</h2><p>Available to discuss frontend engineering, product development, and technical leadership.</p><a href="mailto:sayed.5atab@gmail.com">sayed.5atab@gmail.com</a></div>}<div className="portfolio-page-bottom"><span>Independent products & client engagements</span><span>{String(index + 5).padStart(2, "0")}</span></div></section>)}
         </div>
     </div>;
 }
