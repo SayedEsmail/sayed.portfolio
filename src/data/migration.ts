@@ -5,6 +5,7 @@
 export const CAL_LINK = "https://cal.com/sayedesmail/migration-call";
 export const GITHUB_URL = "https://github.com/SayedEsmail";
 export const ZADS_REPO_URL = "https://github.com/SayedEsmail/zads";
+export const VUETIFY_PROOF_URL = "https://github.com/SayedEsmail/vuetify-material-dashboard";
 export const CONTACT_EMAIL = "5atab.work@gmail.com";
 
 export const AUDIT_PRICE = "$250";
@@ -60,6 +61,7 @@ export const migrationIncludes = [
 
 export const proofPoints = [
     { title: "Done in public", text: "My own product Zads moved from Nuxt 3 to Next.js 16 with the migration documented commit by commit, tests in CI, Arabic/RTL throughout.", link: ZADS_REPO_URL, linkLabel: "Zads on GitHub" },
+    { title: "Vuetify 2 to 3, in public", text: "Creative Tim's Vuetify Material Dashboard (MIT) moved from Vue 2.6, Vuetify 2, Vuex and Vue CLI to Vue 3.5, Vuetify 3, Pinia, Router 4 and Vite: one concern per commit, every breaking change named, three pre-existing bugs fixed, a smoke test for every route.", link: VUETIFY_PROOF_URL, linkLabel: "The Vue 3 fork on GitHub" },
     { title: "10+ years of Vue in production", text: "Vue 2 and 3, Nuxt 3, Vuetify 2 and 3, Vuex to Pinia, multi-tenant SaaS and real-time dashboards at Schoolz/Routz, Untap and Botme." },
     { title: "ISO 27001:2022, hands on", text: "At Untap I owned the frontend remediation for the certification: vulnerable packages replaced, auth tokens moved to HTTP-only cookies, every audit finding closed until the certificate was granted." },
     { title: "Fixed price, written scope", text: "You know the number before work starts. Changes outside the agreed scope are written change requests with their own price, so the quote does not move." },
