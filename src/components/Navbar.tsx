@@ -27,6 +27,7 @@ export default function Navbar() {
         { name: "Projects", path: "/projects" },
         { name: "About", path: "/about" },
         { name: "Articles", path: "/articles" },
+        { name: "Migration", path: "/migration" },
     ];
 
     const isPathActive = (path: string) => {
