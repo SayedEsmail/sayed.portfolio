@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import TimelineItem from "./TimelineItem";
 import { WhatsAppIcon } from "./Icons";
 import { useLang } from "./LangProvider";
 import { ui, workAr, articlesAr } from "@/data/i18n";
 import { work, type WorkItem } from "@/data/work";
 import { articles } from "@/data/articles";
 
+const DEVTO_COVER = "/covers/articles/vuetify-2-to-vue-3.svg";
 const WA = "https://wa.me/201066293366";
 const DEVTO = "https://dev.to/sayedesmail/what-migrating-a-vuetify-2-dashboard-to-vue-3-actually-took-2nih";
 
@@ -65,20 +67,19 @@ export default function Home() {
         { n: String(articles.length), t: t.stats.articles },
     ];
 
-    const renderGrid = (items: View[], label: string) => (
-        <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3 gap-5 items-stretch">
-            {items.map((item, idx) => {
-                const wide = idx === 0;
+    const renderGrid = (items: View[], label: string, cols: string) => (
+        <div className={`grid grid-cols-1 gap-5 items-stretch ${cols}`}>
+            {items.map((item) => {
                 return (
-                <article key={item.slug} id={item.slug} className={`${card} group overflow-hidden flex flex-col scroll-mt-4 ${wide ? "min-[1024px]:col-span-2" : ""}`}>
-                    <div className={`relative overflow-hidden rounded-t-[20px] bg-[#0F1218] aspect-[16/10] ${wide ? "min-[1024px]:aspect-[2.6/1]" : ""}`}>
+                <article key={item.slug} id={item.slug} className={`${card} group overflow-hidden flex flex-col scroll-mt-4 `}>
+                    <div className={`relative overflow-hidden rounded-t-[20px] bg-[#0F1218] aspect-[16/10]`}>
                         {item.image && (
                             <Image
                                 src={item.image.src}
                                 alt={item.image.alt}
                                 fill
                                 unoptimized={item.image.src.endsWith(".svg")}
-                                sizes={wide ? "(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 66vw" : "(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 33vw"}
+                                sizes="(max-width: 767px) 100vw, 50vw"
                                 className="object-cover object-top motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
                             />
                         )}
@@ -109,11 +110,19 @@ export default function Home() {
         </div>
     );
 
+    const cover = (src?: string) => src ? (
+        <div className="relative aspect-[16/9] overflow-hidden rounded-t-[20px] bg-[#0F1218]">
+            <Image src={src} alt="" fill unoptimized sizes="(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 25vw" className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]" />
+            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent" />
+        </div>
+    ) : null;
+
     const articleCards = articles.map((a) => {
         const ar = articlesAr[a.slug];
         const mins = a.readTime.match(/\d+/)?.[0] ?? "";
         return {
             slug: a.slug,
+            cover: a.cover,
             title: isAr && ar ? ar.title : a.title,
             excerpt: isAr && ar ? ar.excerpt : a.excerpt,
             date: isAr && ar ? ar.date : a.date,
@@ -188,158 +197,190 @@ export default function Home() {
             </section>
 
             {/* Work */}
-            <section id="work" aria-labelledby="work-title" className={`${wrap} pt-[72px] flex flex-col gap-12 scroll-mt-4`}>
-                <h2 id="work-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.work.title}</h2>
+            <section id="work" aria-labelledby="work-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0F1218" }}>
+                <div aria-hidden="true" className="bd-dots" />
+                <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-12 scroll-mt-4`}>
+                    <h2 id="work-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.work.title}</h2>
 
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2 max-w-[720px]">
-                        <p className={`m-0 ${eyebrow}`}>{t.work.companyEyebrow}</p>
-                        <h3 className="m-0 text-2xl font-extrabold">{t.work.companyTitle}</h3>
-                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.companyText}</p>
+                    <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-2 max-w-[720px]">
+                            <p className={`m-0 ${eyebrow}`}>{t.work.companyEyebrow}</p>
+                            <h3 className="m-0 text-2xl font-extrabold">{t.work.companyTitle}</h3>
+                            <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.companyText}</p>
+                        </div>
+                        {renderGrid(featuredCompany, t.work.companyTag, "min-[768px]:grid-cols-2")}
+                        <Link href="/projects#company" className="self-start font-bold text-[#F0801A]">{t.work.companyLink}</Link>
                     </div>
-                    {renderGrid(featuredCompany, t.work.companyTag)}
-                    <Link href="/projects#company" className="self-start font-bold text-[#F0801A]">{t.work.companyLink}</Link>
-                </div>
 
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-2 max-w-[720px]">
-                        <p className={`m-0 ${eyebrow}`}>{t.work.freelanceEyebrow}</p>
-                        <h3 className="m-0 text-2xl font-extrabold">{t.work.freelanceTitle}</h3>
-                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.freelanceText}</p>
+                    <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-2 max-w-[720px]">
+                            <p className={`m-0 ${eyebrow}`}>{t.work.freelanceEyebrow}</p>
+                            <h3 className="m-0 text-2xl font-extrabold">{t.work.freelanceTitle}</h3>
+                            <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.freelanceText}</p>
+                        </div>
+                        {renderGrid(featuredFreelance, t.work.freelanceTag, "min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3")}
+                        <Link href="/projects#freelance" className="self-start font-bold text-[#F0801A]">{t.work.freelanceLink}</Link>
                     </div>
-                    {renderGrid(featuredFreelance, t.work.freelanceTag)}
-                    <Link href="/projects#freelance" className="self-start font-bold text-[#F0801A]">{t.work.freelanceLink}</Link>
-                </div>
 
-                <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-[#232836] pt-6 font-bold">
-                    <Link href="/projects" className="text-[#F0801A]">{t.work.all}</Link>
-                    <Link href="/portfolio" className="text-[#F0801A]">{t.work.preview}</Link>
+                    <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-[#232836] pt-6 font-bold">
+                        <Link href="/projects" className="text-[#F0801A]">{t.work.all}</Link>
+                        <Link href="/portfolio" className="text-[#F0801A]">{t.work.preview}</Link>
+                    </div>
                 </div>
             </section>
 
             {/* Experience */}
-            <section id="experience" aria-labelledby="experience-title" className={`${wrap} pt-[72px] flex flex-col gap-8 scroll-mt-4`}>
-                <div className="flex flex-col gap-2 max-w-[720px]">
-                    <p className={`m-0 ${eyebrow}`}>{t.experience.eyebrow}</p>
-                    <h2 id="experience-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.experience.title}</h2>
-                    <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.experience.text}</p>
+            <section id="experience" aria-labelledby="experience-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0B0D12" }}>
+                <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-8 scroll-mt-4`}>
+                    <div className="flex flex-col gap-2 max-w-[720px]">
+                        <p className={`m-0 ${eyebrow}`}>{t.experience.eyebrow}</p>
+                        <h2 id="experience-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.experience.title}</h2>
+                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.experience.text}</p>
+                    </div>
+                    <div className="relative">
+                        <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none">
+                            <div className="absolute top-0 bottom-0 w-[2px] start-[7px] min-[1024px]:start-1/2 min-[1024px]:-translate-x-1/2 rtl:min-[1024px]:translate-x-1/2 bg-gradient-to-b from-[#F0801A] via-[#F0801A]/60 to-[#F0801A]/10" />
+                            <div className="tl-pulse h-[40%] w-[140px] start-[7px] -ms-[70px] min-[1024px]:start-1/2" />
+                        </div>
+                        <ol className="relative m-0 p-0 list-none flex flex-col gap-8 min-[1024px]:gap-10">
+                            {company.map((item, i) => {
+                                const right = i % 2 === 1;
+                                return (
+                                    <TimelineItem key={item.slug} fromEnd={right} className={`relative ps-10 min-[1024px]:w-1/2 ${right ? "min-[1024px]:ps-12 min-[1024px]:ms-auto" : "min-[1024px]:ps-0 min-[1024px]:pe-12"}`}>
+                                        <span aria-hidden="true" className={`absolute top-7 start-0 w-4 h-4 rounded-full bg-[#F0801A] border-4 border-[#0B0D12] shadow-[0_0_0_4px_rgba(240,128,26,.15)] z-10 ${right ? "min-[1024px]:-start-2" : "min-[1024px]:start-auto min-[1024px]:-end-2"}`} />
+                                        <span aria-hidden="true" className={`absolute top-[35px] h-[2px] w-6 start-4 bg-[#F0801A]/60 min-[1024px]:w-12 ${right ? "min-[1024px]:start-0" : "min-[1024px]:start-auto min-[1024px]:end-0"}`} />
+                                        <div className={`${card} p-6 flex flex-col gap-3`}>
+                                            {item.period && <p className={`m-0 ${eyebrow}`} dir="ltr" style={isAr ? { textAlign: "right" } : undefined}>{item.period}</p>}
+                                            <h3 className="m-0 text-xl font-extrabold">{item.employer}</h3>
+                                            <p className="m-0 text-sm text-[#9AA3B2]">{item.role}</p>
+                                            <ul className="m-0 ps-5 list-disc marker:text-[#F0801A] text-sm leading-[1.9] text-[#C9D0DC] flex flex-col gap-1.5">
+                                                {item.contributions.map((c) => <li key={c}>{c}</li>)}
+                                            </ul>
+                                            <a href={`#${item.slug}`} className="self-start text-sm font-bold text-[#F0801A]">{t.experience.view}</a>
+                                        </div>
+                                    </TimelineItem>
+                                );
+                            })}
+                        </ol>
+                    </div>
                 </div>
-                <ol className="m-0 p-0 list-none border-s-2 border-[#232836] ms-2 flex flex-col gap-6">
-                    {company.map((item) => (
-                        <li key={item.slug} className="relative ps-7 min-[900px]:ps-9">
-                            <span aria-hidden="true" className="absolute top-7 -start-[9px] w-4 h-4 rounded-full bg-[#F0801A] border-4 border-[#0B0D12]" />
-                            <div className={`${card} p-6 flex flex-col gap-3 max-w-[900px]`}>
-                                {item.period && <p className={`m-0 ${eyebrow}`} dir="ltr" style={isAr ? { textAlign: "right" } : undefined}>{item.period}</p>}
-                                <h3 className="m-0 text-xl font-extrabold">{item.employer}</h3>
-                                <p className="m-0 text-sm text-[#9AA3B2]">{item.role}</p>
-                                <ul className="m-0 ps-5 list-disc marker:text-[#F0801A] text-sm leading-[1.9] text-[#C9D0DC] flex flex-col gap-1.5">
-                                    {item.contributions.map((c) => <li key={c}>{c}</li>)}
-                                </ul>
-                                <a href={`#${item.slug}`} className="self-start text-sm font-bold text-[#F0801A]">{t.experience.view}</a>
-                            </div>
-                        </li>
-                    ))}
-                </ol>
             </section>
 
             {/* Focus */}
-            <section id="focus" aria-labelledby="focus-title" className={`${wrap} pt-[72px] flex flex-col gap-7 scroll-mt-4`}>
-                <div className="flex flex-col gap-3 max-w-[680px]">
-                    <h2 id="focus-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.focus.title}</h2>
-                    <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.focus.subtitle}</p>
-                </div>
-                <div className="grid grid-cols-1 min-[620px]:grid-cols-2 gap-5">
-                    {t.focus.cards.map((c, i) => (
-                        <div key={c.title} className={`${card} relative overflow-hidden p-7 flex flex-col gap-3`}>
-                            <svg aria-hidden="true" viewBox="0 0 120 100" fill="none" stroke="#F0801A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute top-0 end-0 w-32 h-28 opacity-15">{focusMotifs[i]}</svg>
-                            <div className="relative flex items-center gap-3">
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#1A1F2B] shrink-0">{focusIcons[i]}</div>
-                                <h3 className="m-0 text-xl font-extrabold">{c.title}</h3>
+            <section id="focus" aria-labelledby="focus-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0F1218" }}>
+                <div aria-hidden="true" className="bd-ring" />
+                <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-7 scroll-mt-4`}>
+                    <div className="flex flex-col gap-3 max-w-[680px]">
+                        <h2 id="focus-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.focus.title}</h2>
+                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.focus.subtitle}</p>
+                    </div>
+                    <div className="grid grid-cols-1 min-[620px]:grid-cols-2 gap-5">
+                        {t.focus.cards.map((c, i) => (
+                            <div key={c.title} className={`${card} relative overflow-hidden p-7 flex flex-col gap-3`}>
+                                <svg aria-hidden="true" viewBox="0 0 120 100" fill="none" stroke="#F0801A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute top-0 end-0 w-32 h-28 opacity-15">{focusMotifs[i]}</svg>
+                                <div className="relative flex items-center gap-3">
+                                    <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#1A1F2B] shrink-0">{focusIcons[i]}</div>
+                                    <h3 className="m-0 text-xl font-extrabold">{c.title}</h3>
+                                </div>
+                                <p className="relative m-0 text-sm leading-[1.9] text-[#9AA3B2]">{c.description}</p>
                             </div>
-                            <p className="relative m-0 text-sm leading-[1.9] text-[#9AA3B2]">{c.description}</p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </section>
 
             {/* Articles */}
-            <section id="articles" aria-labelledby="articles-title" className={`${wrap} pt-[72px] flex flex-col gap-7 scroll-mt-4`}>
-                <div className="flex flex-col gap-3 max-w-[760px]">
-                    <h2 id="articles-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.articles.title}</h2>
-                    <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.articles.subtitle}</p>
+            <section id="articles" aria-labelledby="articles-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0B0D12" }}>
+                <div aria-hidden="true" className="bd-blob" />
+                <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-7 scroll-mt-4`}>
+                    <div className="flex flex-col gap-3 max-w-[760px]">
+                        <h2 id="articles-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.articles.title}</h2>
+                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.articles.subtitle}</p>
+                    </div>
+                    <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
+                        {articleCards.map((a) => (
+                            <Link key={a.slug} href={`/articles/${a.slug}`} className={`${card} group overflow-hidden flex flex-col`}>
+                                {cover(a.cover)}
+                                <div className="p-6 flex flex-col gap-3 flex-1">
+                                    <div className="flex justify-between text-[11px] text-[#9AA3B2]"><span>{a.date}</span><span>{a.readTime}</span></div>
+                                    <h3 className="m-0 text-base font-extrabold leading-[1.6]">{a.title}</h3>
+                                    <p className="m-0 text-sm leading-[1.8] text-[#9AA3B2] line-clamp-4">{a.excerpt}</p>
+                                    <span className="mt-auto pt-2 text-sm font-bold text-[#F0801A]">{t.articles.read} <span aria-hidden="true">{isAr ? "←" : "→"}</span></span>
+                                </div>
+                            </Link>
+                        ))}
+                        <a href={DEVTO} target="_blank" rel="noopener noreferrer" className={`${card} group overflow-hidden flex flex-col`}>
+                            {cover(DEVTO_COVER)}
+                            <div className="p-6 flex flex-col gap-3 flex-1">
+                                <div className="flex justify-between text-[11px] text-[#9AA3B2]"><span dir="ltr">{t.articles.devtoMeta}</span></div>
+                                <h3 className="m-0 text-base font-extrabold leading-[1.6]">{t.articles.devto}</h3>
+                                <span className="mt-auto pt-2 text-sm font-bold text-[#F0801A]">{t.articles.read} <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <Link href="/articles" className="self-start font-bold text-[#F0801A]">{t.articles.all}</Link>
                 </div>
-                <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
-                    {articleCards.map((a) => (
-                        <Link key={a.slug} href={`/articles/${a.slug}`} className={`${card} p-6 flex flex-col gap-3`}>
-                            <div className="flex justify-between text-[11px] text-[#9AA3B2]"><span>{a.date}</span><span>{a.readTime}</span></div>
-                            <h3 className="m-0 text-base font-extrabold leading-[1.6]">{a.title}</h3>
-                            <p className="m-0 text-sm leading-[1.8] text-[#9AA3B2] line-clamp-4">{a.excerpt}</p>
-                            <span className="mt-auto pt-2 text-sm font-bold text-[#F0801A]">{t.articles.read} <span aria-hidden="true">{isAr ? "←" : "→"}</span></span>
-                        </Link>
-                    ))}
-                    <a href={DEVTO} target="_blank" rel="noopener noreferrer" className={`${card} p-6 flex flex-col gap-3`}>
-                        <div className="flex justify-between text-[11px] text-[#9AA3B2]"><span dir="ltr">{t.articles.devtoMeta}</span></div>
-                        <h3 className="m-0 text-base font-extrabold leading-[1.6]">{t.articles.devto}</h3>
-                        <span className="mt-auto pt-2 text-sm font-bold text-[#F0801A]">{t.articles.read} <span aria-hidden="true">↗</span></span>
-                    </a>
-                </div>
-                <Link href="/articles" className="self-start font-bold text-[#F0801A]">{t.articles.all}</Link>
             </section>
 
             {/* About */}
-            <section id="about" aria-labelledby="about-title" className={`${wrap} pt-[72px] flex flex-col gap-6 scroll-mt-4`}>
-                <div className={`${card} p-8 flex flex-col gap-4`}>
-                    <p className={`m-0 ${eyebrow}`}>{t.about.eyebrow}</p>
-                    <h2 id="about-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.about.tagline}</h2>
-                    <p className="m-0 leading-[2] text-[#9AA3B2] max-w-[800px]">{t.about.bio}</p>
-                    <div className="flex flex-wrap gap-x-6 gap-y-3 font-bold text-sm text-[#F0801A]">
-                        <a href="/Sayed_Esmail_Resume.pdf" download>{t.about.cv}</a>
-                        <a href="/Sayed_Esmail_Portfolio.pdf" download>{t.about.pdf}</a>
-                        <Link href="/about">{t.about.more}</Link>
-                        <a href="https://github.com/SayedEsmail" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                        <a href="https://www.linkedin.com/in/sayed-esmail-khattab" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <section id="about" aria-labelledby="about-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0F1218" }}>
+                <div aria-hidden="true" className="bd-lines" />
+                <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
+                    <div className={`${card} p-8 flex flex-col gap-4`}>
+                        <p className={`m-0 ${eyebrow}`}>{t.about.eyebrow}</p>
+                        <h2 id="about-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.about.tagline}</h2>
+                        <p className="m-0 leading-[2] text-[#9AA3B2] max-w-[800px]">{t.about.bio}</p>
+                        <div className="flex flex-wrap gap-x-6 gap-y-3 font-bold text-sm text-[#F0801A]">
+                            <a href="/Sayed_Esmail_Resume.pdf" download>{t.about.cv}</a>
+                            <a href="/Sayed_Esmail_Portfolio.pdf" download>{t.about.pdf}</a>
+                            <Link href="/about">{t.about.more}</Link>
+                            <a href="https://github.com/SayedEsmail" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                            <a href="https://www.linkedin.com/in/sayed-esmail-khattab" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+                        </div>
                     </div>
-                </div>
-                <div className="grid grid-cols-1 min-[900px]:grid-cols-2 gap-6">
-                    <div className={`${card} p-8 flex flex-col gap-3`}>
-                        <p className={`m-0 ${eyebrow}`}>{t.about.indepEyebrow}</p>
-                        <h3 className="m-0 text-2xl font-extrabold">{t.about.indepTitle}</h3>
-                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.indepText}</p>
-                        <Link href="/projects#freelance" className="font-bold text-[#F0801A]">{t.about.indepLink}</Link>
+                    <div className="grid grid-cols-1 min-[900px]:grid-cols-2 gap-6">
+                        <div className={`${card} p-8 flex flex-col gap-3`}>
+                            <p className={`m-0 ${eyebrow}`}>{t.about.indepEyebrow}</p>
+                            <h3 className="m-0 text-2xl font-extrabold">{t.about.indepTitle}</h3>
+                            <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.indepText}</p>
+                            <Link href="/projects#freelance" className="font-bold text-[#F0801A]">{t.about.indepLink}</Link>
+                        </div>
+                        <div className={`${card} p-8 flex flex-col gap-3`}>
+                            <p className={`m-0 ${eyebrow}`}>{t.about.eduEyebrow}</p>
+                            <h3 className="m-0 text-2xl font-extrabold">{t.about.eduTitle}</h3>
+                            <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.edu[0]}<br />{t.about.edu[1]}</p>
+                            <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.langs[0]}<br />{t.about.langs[1]}</p>
+                        </div>
                     </div>
-                    <div className={`${card} p-8 flex flex-col gap-3`}>
-                        <p className={`m-0 ${eyebrow}`}>{t.about.eduEyebrow}</p>
-                        <h3 className="m-0 text-2xl font-extrabold">{t.about.eduTitle}</h3>
-                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.edu[0]}<br />{t.about.edu[1]}</p>
-                        <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.about.langs[0]}<br />{t.about.langs[1]}</p>
+                    <div className="border-t border-[#232836] pt-8 flex flex-col gap-2">
+                        <h3 className="m-0 text-2xl font-extrabold">{t.about.contactTitle}</h3>
+                        <p className="m-0 text-[#9AA3B2]">{t.about.contactText}</p>
+                        <a href="mailto:5atab.work@gmail.com" dir="ltr" className="self-start font-bold text-[#F0801A]">5atab.work@gmail.com ↗</a>
                     </div>
-                </div>
-                <div className="border-t border-[#232836] pt-8 flex flex-col gap-2">
-                    <h3 className="m-0 text-2xl font-extrabold">{t.about.contactTitle}</h3>
-                    <p className="m-0 text-[#9AA3B2]">{t.about.contactText}</p>
-                    <a href="mailto:5atab.work@gmail.com" dir="ltr" className="self-start font-bold text-[#F0801A]">5atab.work@gmail.com ↗</a>
                 </div>
             </section>
 
             {/* Services */}
-            <section id="services" aria-labelledby="services-title" className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
-                <h2 id="services-title" className="m-0 text-2xl sm:text-3xl font-extrabold">{t.services.title}</h2>
-                <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
-                    {serviceMeta.map((s, i) => {
-                        const inner = (
-                            <>
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${s.color}22` }}>{s.icon}</div>
-                                <h3 className="m-0 text-[18px] font-extrabold">{t.services.items[i]}</h3>
-                                <span className="font-bold text-sm" style={{ color: s.color }}>{t.services.more}</span>
-                            </>
-                        );
-                        const cls = `${card} p-6 flex flex-col gap-4`;
-                        return s.external ? (
-                            <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-                        ) : (
-                            <Link key={s.href} href={s.href} className={cls}>{inner}</Link>
-                        );
-                    })}
+            <section id="services" aria-labelledby="services-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0B0D12" }}>
+                <div className={`${wrap} relative pt-[72px] pb-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
+                    <h2 id="services-title" className="m-0 text-2xl sm:text-3xl font-extrabold">{t.services.title}</h2>
+                    <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
+                        {serviceMeta.map((s, i) => {
+                            const inner = (
+                                <>
+                                    <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${s.color}22` }}>{s.icon}</div>
+                                    <h3 className="m-0 text-[18px] font-extrabold">{t.services.items[i]}</h3>
+                                    <span className="font-bold text-sm" style={{ color: s.color }}>{t.services.more}</span>
+                                </>
+                            );
+                            const cls = `${card} p-6 flex flex-col gap-4`;
+                            return s.external ? (
+                                <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                            ) : (
+                                <Link key={s.href} href={s.href} className={cls}>{inner}</Link>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
         </div>

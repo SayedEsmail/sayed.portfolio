@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { articles } from "@/data/articles";
 import SectionHeading from "@/components/SectionHeading";
@@ -32,6 +33,11 @@ export default function ArticlesPage() {
                 {articles.map((article, index) => (
                     <FadeIn key={article.slug} delay={100 * (index + 1)}>
                         <div className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/20 hover:border-accent/20 transition-all duration-300 relative group flex flex-col justify-between md:flex-row md:items-center gap-4">
+                            {article.cover && (
+                                <div className="relative w-full md:w-56 shrink-0 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-950">
+                                    <Image src={article.cover} alt="" fill unoptimized sizes="(max-width: 767px) 100vw, 224px" className="object-cover" />
+                                </div>
+                            )}
                             <div className="flex-grow max-w-2xl">
                                 <div className="flex items-center gap-3 text-[10px] font-mono text-neutral-500 mb-2">
                                     <span>{article.date}</span>

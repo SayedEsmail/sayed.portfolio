@@ -185,3 +185,30 @@ body {
 @media (max-width: 480px) {
     .hero-code { display: none; }
 }
+
+/* Home: timeline reveal and section backdrops (transform/opacity only) */
+.rv-pre { opacity: 0; transform: translate3d(0, 24px, 0); }
+.rv-pre, .rv-show { transition: opacity .7s ease, transform .7s ease; }
+.rv-show { opacity: 1; transform: none; }
+@media (min-width: 1024px) {
+    .rv-start.rv-pre { transform: translate3d(-32px, 0, 0); }
+    .rv-end.rv-pre { transform: translate3d(32px, 0, 0); }
+    [dir="rtl"] .rv-start.rv-pre { transform: translate3d(32px, 0, 0); }
+    [dir="rtl"] .rv-end.rv-pre { transform: translate3d(-32px, 0, 0); }
+    .rv-start.rv-show, .rv-end.rv-show { transform: none !important; }
+}
+.bd-dots, .bd-ring, .bd-blob, .bd-lines, .tl-pulse { position: absolute; pointer-events: none; will-change: transform; }
+.bd-dots { inset: -60px; opacity: .08; background-image: radial-gradient(circle, #fff 1.2px, transparent 1.6px); background-size: 30px 30px; animation: bd-dots 40s linear infinite; }
+@keyframes bd-dots { to { transform: translate3d(30px, 30px, 0); } }
+.tl-pulse { top: 0; opacity: .1; background: linear-gradient(to bottom, transparent, #F0801A, transparent); animation: tl-pulse 9s ease-in-out infinite; }
+@keyframes tl-pulse { from { transform: translate3d(0, -100%, 0); } to { transform: translate3d(0, 250%, 0); } }
+.bd-ring { top: -180px; inset-inline-end: -180px; width: 460px; height: 460px; border-radius: 50%; border: 1px dashed #F0801A; opacity: .12; animation: bd-spin 90s linear infinite; }
+@keyframes bd-spin { to { transform: rotate(360deg); } }
+.bd-blob { top: 10%; inset-inline-start: 5%; width: 420px; height: 420px; border-radius: 50%; opacity: .08; background: radial-gradient(circle, #F0801A 0%, transparent 65%); animation: bd-blob 30s ease-in-out infinite alternate; }
+@keyframes bd-blob { to { transform: translate3d(40vw, 120px, 0); } }
+.bd-lines { inset: -60px; opacity: .05; background-image: repeating-linear-gradient(135deg, #fff 0 1px, transparent 1px 28.28px); animation: bd-lines 20s linear infinite; }
+@keyframes bd-lines { to { transform: translate3d(40px, 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+    .bd-dots, .bd-ring, .bd-blob, .bd-lines, .tl-pulse { animation: none !important; }
+    .rv-pre { opacity: 1; transform: none; }
+}

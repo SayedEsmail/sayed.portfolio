@@ -6,11 +6,13 @@ export interface Article {
     readTime: string;
     excerpt: string;
     content: string;
+    cover?: string;
 }
 
 export const articles: Article[] = [
     {
         slug: "scaling-vue-3-saas-apps",
+        cover: "/covers/articles/scaling-vue-3-saas-apps.svg",
         title: "Scaling Vue 3 SaaS Applications for Enterprise Operations",
         subtitle: "Key lessons in folder organization, dynamic route compilation, and state management at scale.",
         date: "May 20, 2026",
@@ -77,6 +79,7 @@ We prohibited component direct state modification outside of dedicated actions. 
     },
     {
         slug: "lessons-from-multi-tenant-architecture",
+        cover: "/covers/articles/lessons-from-multi-tenant-architecture.svg",
         title: "Lessons in Multi-Tenant Frontend Architecture",
         subtitle: "How to handle dynamic dynamic branding, runtime custom SCSS themes, and role-based CASL permissions.",
         date: "May 12, 2026",
@@ -143,6 +146,7 @@ Combined with HTTP-only session cookies on the backend, this configuration ensur
     },
     {
         slug: "realtime-tracking-optimization",
+        cover: "/covers/articles/realtime-tracking-optimization.svg",
         title: "Real-Time WebSocket Optimization for Fleet Systems",
         subtitle: "Solving coordinate update bottlenecks, marker clustering, and UI viewport optimizations.",
         date: "May 05, 2026",

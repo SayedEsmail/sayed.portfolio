@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img">
+<defs>
+<radialGradient id="g1" cx="50%" cy="48%" r="55%"><stop offset="0" stop-color="#F0801A" stop-opacity=".36"/><stop offset="1" stop-color="#F0801A" stop-opacity="0"/></radialGradient>
+<radialGradient id="g2" cx="90%" cy="8%" r="45%"><stop offset="0" stop-color="#7C4DFF" stop-opacity=".25"/><stop offset="1" stop-color="#7C4DFF" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#fff" fill-opacity=".09"/></pattern>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#0F1218" stop-opacity="0"/><stop offset="1" stop-color="#0F1218" stop-opacity=".7"/></radialGradient>
+</defs>
+<style>@media (prefers-reduced-motion: reduce){*{animation:none!important}}</style>
+<rect width="1200" height="675" fill="#0F1218"/><rect width="1200" height="675" fill="url(#g1)"/><rect width="1200" height="675" fill="url(#g2)"/><rect width="1200" height="675" fill="url(#dots)"/><rect width="1200" height="675" fill="url(#vig)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+
+<path d="M600 410L830 520L600 630L370 520Z" stroke="#fff" stroke-opacity=".25" stroke-width="4"/><path d="M370 520v-0M370 520v40l230 110 230-110v-40" stroke="#fff" stroke-opacity=".25"/>
+<path d="M600 290L830 400L600 510L370 400Z" stroke="#fff" stroke-opacity=".7" stroke-width="4"/><path d="M370 400v40l230 110 230-110v-40" stroke="#fff" stroke-opacity=".25" stroke-opacity=".12"/>
+<path d="M600 170L830 280L600 390L370 280Z" stroke="#F0801A" stroke-width="4"/>
+<path d="M370 280v120M830 280v120M600 390v120M370 400v120M830 400v120" stroke="#fff" stroke-opacity=".25" stroke-opacity=".15"/>
+<path d="M600 230L680 270 600 310 520 270Z" stroke="#F0801A"/><path d="M600 350L650 375 600 400 550 375Z" stroke="#fff" stroke-opacity=".7"/>
+<path d="M200 200h120M200 230h70M880 450h120M930 480h70" stroke="#fff" stroke-opacity=".25"/><circle cx="1010" cy="170" r="30" stroke="#fff" stroke-opacity=".25"/><circle cx="170" cy="480" r="6" stroke="#F0801A"/>
+</g></svg>
