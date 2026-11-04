@@ -127,7 +127,7 @@ export default function Home() {
                     <div aria-hidden="true" className="hero-circle" />
                     <div className="hero-photo">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/me.svg" alt={t.hero.photoAlt} className="w-full h-full object-cover" style={{ objectPosition: "50% 12%", filter: "contrast(1.06) saturate(1.05)" }} />
+                        <img src="/me.jpg" alt={t.hero.photoAlt} className="w-full h-full object-cover" style={{ objectPosition: "50% 12%", filter: "none" }} />
                     </div>
                     <div className="absolute top-5 right-0 bg-[#F0801A] text-white px-[18px] py-3 rounded-[14px] font-extrabold shadow-[0_12px_30px_rgba(240,128,26,.4)]" style={{ animation: "floaty 4s infinite" }}>Vue 3 ✓</div>
                     <div className="hero-badge-b bg-[#1B2030] border border-[#2A3040] px-[18px] py-3 rounded-[14px] font-extrabold" style={{ animation: "floaty 5s infinite .8s" }}>React ⚛</div>
