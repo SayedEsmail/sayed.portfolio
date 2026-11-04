@@ -6,7 +6,7 @@ const ENDPOINT = "https://sayed-hub.vercel.app/api/lead";
 type Status = "idle" | "sending" | "success" | "error";
 
 const field =
-    "w-full box-border px-3.5 py-3 border border-[#D9E0EC] rounded-[10px] text-[15px] text-[#1B2559] bg-white focus:outline-none focus:border-[#F0801A] focus:ring-2 focus:ring-[#F0801A]/25";
+    "w-full box-border px-3.5 py-[13px] border-[1.5px] border-[#2A3040] rounded-xl text-[15px] text-[#F3F4F6] bg-[#0F1218] focus:outline-none focus:border-[#F0801A] focus:ring-2 focus:ring-[#F0801A]/25";
 const label = "text-sm font-bold";
 
 function isValidUrl(value: string): boolean {
@@ -60,7 +60,7 @@ export default function MigrationLeadForm() {
         return (
             <div role="status" className="flex flex-col gap-3 text-center py-6">
                 <h2 className="text-[22px] font-extrabold m-0">وصل طلبك</h2>
-                <p className="m-0 text-sm leading-[1.9] text-[#6B7280]">
+                <p className="m-0 text-sm leading-[1.9] text-[#9AA3B2]">
                     سأراجع مشروعك وأرد عليك خلال يوم عمل بما أراه من الخارج، بلا التزام.
                 </p>
             </div>
@@ -79,17 +79,13 @@ export default function MigrationLeadForm() {
                 <select id="mig-ver" name="version" className={field} defaultValue="Vue 2">
                     <option>Vue 2</option>
                     <option>Nuxt 2</option>
-                    <option>Nuxt 3</option>
-                    <option>لا أعرف</option>
+                    <option>Vuetify 2</option>
+                    <option>غير متأكد</option>
                 </select>
             </div>
             <div className="flex flex-col gap-1.5">
                 <label htmlFor="mig-email" className={label}>البريد الإلكتروني</label>
                 <input id="mig-email" name="email" type="email" required placeholder="name@example.com" dir="ltr" className={`${field} text-right`} />
-            </div>
-            <div className="flex flex-col gap-1.5">
-                <label htmlFor="mig-msg" className={label}>ملاحظات (اختياري)</label>
-                <textarea id="mig-msg" name="message" rows={3} maxLength={900} className={field} />
             </div>
             {/* Honeypot: offscreen, not focusable, must stay empty */}
             <input
@@ -101,21 +97,21 @@ export default function MigrationLeadForm() {
                 defaultValue=""
                 style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
             />
-            {error && <p role="alert" className="m-0 text-sm font-semibold text-[#C0392B]">{error}</p>}
+            {error && <p role="alert" className="m-0 text-sm font-semibold text-[#FF6B5E]">{error}</p>}
             {status === "error" && (
-                <p role="alert" className="m-0 text-sm font-semibold text-[#C0392B]">
+                <p role="alert" className="m-0 text-sm font-semibold text-[#FF6B5E]">
                     تعذر الإرسال الآن. حاول مرة أخرى أو راسلني على واتساب.
                 </p>
             )}
             <button
                 type="submit"
                 disabled={status === "sending"}
-                className="bg-[#F0801A] text-white border-0 px-5 py-3.5 rounded-[10px] font-bold text-base cursor-pointer disabled:opacity-70 disabled:cursor-wait"
+                className="bg-[#F0801A] text-white border-0 px-5 py-3.5 rounded-[10px] font-bold text-base cursor-pointer font-[inherit] disabled:opacity-70 disabled:cursor-wait"
             >
                 {status === "sending" ? "جارٍ الإرسال..." : "اطلب فحص مشروعك"}
             </button>
-            <p className="m-0 text-[13px] leading-[1.8] text-[#6B7280]">
-                لا نحتاج صلاحية على الكود قبل الاتفاق. أرد خلال يوم عمل بما أراه من الخارج، بلا التزام. سعر ثابت يصلك في عرض قبل البدء.
+            <p className="m-0 text-[13px] leading-[1.8] text-[#9AA3B2]">
+                لا نحتاج صلاحية على الكود قبل الاتفاق.
             </p>
         </form>
     );
