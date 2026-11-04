@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-    --background: #0a0a0a;
+    --background: #0B0D12;
     --foreground: #ededed;
     --card: #161616;
     --accent: #00d4aa;
@@ -158,4 +158,30 @@ body {
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+}
+
+/* Dark Arabic home / migration design */
+.ar { font-family: var(--font-cairo), system-ui, sans-serif; }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes glow { 0%, 100% { opacity: .35; } 50% { opacity: .6; } }
+.rise { animation: rise .8s both; }
+.pf-card { transition: transform .25s, border-color .25s, box-shadow .25s; }
+.pf-card:hover { transform: translateY(-6px); border-color: #F0801A !important; box-shadow: 0 18px 44px rgba(240, 128, 26, .18); }
+.marquee-track { display: flex; gap: 16px; width: max-content; direction: ltr; animation: marquee 30s linear infinite; }
+.hero-art { position: relative; height: 480px; display: flex; justify-content: center; width: 100%; max-width: 420px; margin-inline: auto; }
+.hero-circle { position: absolute; bottom: 0; width: min(380px, 92%); aspect-ratio: 1; border-radius: 50%; background: linear-gradient(160deg, #F0801A, #7C2D00); opacity: .9; }
+.hero-photo { position: absolute; bottom: 0; width: min(380px, 92%); height: 440px; border-radius: 0 0 190px 190px; overflow: hidden; background: #12151C; }
+.hero-code { position: absolute; top: 150px; left: -30px; width: 250px; }
+.hero-badge-b { position: absolute; bottom: 90px; left: -10px; }
+@media (max-width: 899px) {
+    .hero-art { height: 440px; }
+    .hero-photo { height: 400px; }
+    .hero-code { left: 0; top: 130px; width: 220px; }
+    .hero-badge-b { left: 0; }
+}
+@media (max-width: 480px) {
+    .hero-code { display: none; }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo, Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -7,6 +7,12 @@ import "./globals.css";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
+});
+
+const cairo = Cairo({
+    variable: "--font-cairo",
+    subsets: ["arabic", "latin"],
+    weight: ["400", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -49,7 +55,7 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+            className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased dark`}
         >
             <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/15 selection:text-accent font-sans">
                 <a className="skip-link" href="#main-content">Skip to content</a>
