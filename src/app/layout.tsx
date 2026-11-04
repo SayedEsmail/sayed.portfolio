@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cairo, Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { LangProvider } from "@/components/LangProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -59,11 +60,13 @@ export default function RootLayout({
         >
             <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/15 selection:text-accent font-sans">
                 <a className="skip-link" href="#main-content">Skip to content</a>
-                <Navbar />
-                <main id="main-content" className="flex-grow">
-                    {children}
-                </main>
-                <Footer />
+                <LangProvider>
+                    <Navbar />
+                    <main id="main-content" className="flex-grow">
+                        {children}
+                    </main>
+                    <Footer />
+                </LangProvider>
             </body>
         </html>
     );
