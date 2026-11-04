@@ -32,6 +32,13 @@ const focusIcons = [
     <svg key="d" {...svg} stroke="#7C4DFF"><path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" /></svg>,
 ];
 
+const focusMotifs = [
+    <path key="a" d="M10 90h30V60h30V35h30V10M10 70h20V50h20V30h20" />,
+    <g key="b"><circle cx="75" cy="45" r="34" /><circle cx="75" cy="45" r="20" /><circle cx="75" cy="45" r="6" /></g>,
+    <path key="c" d="M10 80c20-50 40 20 60-30s30-30 40-30M10 95c20-50 40 20 60-30s30-30 40-30" />,
+    <g key="d"><path d="m60 10 40 22-40 22-40-22 40-22Z" /><path d="m20 52 40 22 40-22M20 72l40 22 40-22" /></g>,
+];
+
 const serviceMeta = [
     { href: "https://sayed-hub.vercel.app/store-check", color: "#2F7CF6", external: true, icon: <svg {...svg} stroke="#2F7CF6"><path d="M3 9h18l-1.5 11h-15L3 9Z" /><path d="M8 9V6a4 4 0 0 1 8 0v3" /><path d="m9 14 2 2 4-4" /></svg> },
     { href: "https://maqru.vercel.app", color: "#17A36A", external: true, icon: <svg {...svg} stroke="#17A36A"><circle cx="12" cy="12" r="3" /><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" /></svg> },
@@ -49,6 +56,8 @@ export default function Home() {
     const localize = (item: WorkItem): View => (isAr ? { ...item, ...workAr[item.slug] } as View : item);
     const company = work.filter((w) => w.category === "company").map(localize);
     const freelance = work.filter((w) => w.category === "freelance").map(localize);
+    const featuredCompany = company.filter((w) => w.featured);
+    const featuredFreelance = freelance.filter((w) => w.featured);
     const stats = [
         { n: "10+", t: t.stats.years },
         { n: String(company.length), t: t.stats.companies },
@@ -57,14 +66,25 @@ export default function Home() {
     ];
 
     const renderGrid = (items: View[], label: string) => (
-        <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3 gap-5">
-            {items.map((item) => (
-                <article key={item.slug} id={item.slug} className={`${card} overflow-hidden flex flex-col scroll-mt-4`}>
-                    {item.image && (
-                        <div className="relative aspect-[16/9] bg-[#0F1218] border-b border-[#232836]">
-                            <Image src={item.image.src} alt={item.image.alt} fill sizes="(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 33vw" className="object-cover object-top" />
-                        </div>
-                    )}
+        <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3 gap-5 items-stretch">
+            {items.map((item, idx) => {
+                const wide = idx === 0;
+                return (
+                <article key={item.slug} id={item.slug} className={`${card} group overflow-hidden flex flex-col scroll-mt-4 ${wide ? "min-[1024px]:col-span-2" : ""}`}>
+                    <div className={`relative overflow-hidden rounded-t-[20px] bg-[#0F1218] aspect-[16/10] ${wide ? "min-[1024px]:aspect-[2.6/1]" : ""}`}>
+                        {item.image && (
+                            <Image
+                                src={item.image.src}
+                                alt={item.image.alt}
+                                fill
+                                unoptimized={item.image.src.endsWith(".svg")}
+                                sizes={wide ? "(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 66vw" : "(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 33vw"}
+                                className="object-cover object-top motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
+                            />
+                        )}
+                        <div aria-hidden="true" className="absolute inset-0 opacity-0 motion-safe:transition-opacity motion-safe:duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at 50% 45%, rgba(240,128,26,.22), transparent 65%)" }} />
+                        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent" />
+                    </div>
                     <div className="p-6 flex flex-col gap-3 flex-1">
                         <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-[11px] text-[#9AA3B2]">
                             <span className="text-[#F0801A] font-bold uppercase tracking-[.08em]">{label}</span>
@@ -73,18 +93,19 @@ export default function Home() {
                         <h3 className="m-0 text-2xl font-extrabold">{item.title}</h3>
                         <p className="m-0 text-xs text-[#9AA3B2] leading-[1.7]">{item.role}{item.category === "company" && item.employer !== item.title ? ` · ${item.employer}` : ""}</p>
                         <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC]">{item.description}</p>
-                        <div className="flex flex-wrap gap-2 mt-auto pt-2" dir="ltr">
+                        <div className="flex flex-wrap gap-2 pt-2" dir="ltr">
                             {item.tags.map((tag) => <span key={tag} className={tagCls}>{tag}</span>)}
                         </div>
-                        {(item.caseStudy || item.liveUrl) && (
-                            <div className="flex flex-wrap gap-x-5 gap-y-2 border-t border-[#232836] pt-4 text-sm font-bold text-[#F0801A]">
+                        {(item.caseStudy || item.liveUrl) ? (
+                            <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 border-t border-[#232836] pt-4 text-sm font-bold text-[#F0801A]">
                                 {item.caseStudy && <Link href={item.caseStudy}>{t.work.caseStudy} <span aria-hidden="true">{isAr ? "←" : "→"}</span></Link>}
                                 {item.liveUrl && <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">{t.work.visit} <span aria-hidden="true">↗</span></a>}
                             </div>
-                        )}
+                        ) : <div className="mt-auto" />}
                     </div>
                 </article>
-            ))}
+                );
+            })}
         </div>
     );
 
@@ -117,6 +138,7 @@ export default function Home() {
                     <p className="m-0 text-base sm:text-[17px] leading-[1.9] text-[#9AA3B2] max-w-[560px]">{t.hero.sub}</p>
                     <div className="flex flex-wrap gap-3.5 mt-2">
                         <a href="#work" className="bg-[#F0801A] text-white px-7 py-3.5 rounded-xl font-bold">{t.hero.seeWork}</a>
+                        <a href="/Sayed_Esmail_Resume.pdf" download className="flex items-center gap-2 border-[1.5px] border-[#2A3040] px-6 py-[13px] rounded-xl font-bold">{t.about.cv}</a>
                         <a href={WA} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-[1.5px] border-[#2A3040] px-6 py-[13px] rounded-xl font-bold">
                             <WhatsAppIcon size={18} />{t.hero.talk}
                         </a>
@@ -165,25 +187,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Focus */}
-            <section id="focus" aria-labelledby="focus-title" className={`${wrap} pt-[72px] flex flex-col gap-7 scroll-mt-4`}>
-                <div className="flex flex-col gap-3 max-w-[680px]">
-                    <h2 id="focus-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.focus.title}</h2>
-                    <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.focus.subtitle}</p>
-                </div>
-                <div className="grid grid-cols-1 min-[620px]:grid-cols-2 gap-5">
-                    {t.focus.cards.map((c, i) => (
-                        <div key={c.title} className={`${card} p-7 flex flex-col gap-3`}>
-                            <div className="flex items-center gap-3">
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#1A1F2B] shrink-0">{focusIcons[i]}</div>
-                                <h3 className="m-0 text-xl font-extrabold">{c.title}</h3>
-                            </div>
-                            <p className="m-0 text-sm leading-[1.9] text-[#9AA3B2]">{c.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Work */}
             <section id="work" aria-labelledby="work-title" className={`${wrap} pt-[72px] flex flex-col gap-12 scroll-mt-4`}>
                 <h2 id="work-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.work.title}</h2>
@@ -194,7 +197,7 @@ export default function Home() {
                         <h3 className="m-0 text-2xl font-extrabold">{t.work.companyTitle}</h3>
                         <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.companyText}</p>
                     </div>
-                    {renderGrid(company, t.work.companyTag)}
+                    {renderGrid(featuredCompany, t.work.companyTag)}
                     <Link href="/projects#company" className="self-start font-bold text-[#F0801A]">{t.work.companyLink}</Link>
                 </div>
 
@@ -204,7 +207,7 @@ export default function Home() {
                         <h3 className="m-0 text-2xl font-extrabold">{t.work.freelanceTitle}</h3>
                         <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.freelanceText}</p>
                     </div>
-                    {renderGrid(freelance, t.work.freelanceTag)}
+                    {renderGrid(featuredFreelance, t.work.freelanceTag)}
                     <Link href="/projects#freelance" className="self-start font-bold text-[#F0801A]">{t.work.freelanceLink}</Link>
                 </div>
 
@@ -239,25 +242,23 @@ export default function Home() {
                 </ol>
             </section>
 
-            {/* Services */}
-            <section id="services" aria-labelledby="services-title" className={`${wrap} pt-[72px] flex flex-col gap-6 scroll-mt-4`}>
-                <h2 id="services-title" className="m-0 text-2xl sm:text-3xl font-extrabold">{t.services.title}</h2>
-                <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
-                    {serviceMeta.map((s, i) => {
-                        const inner = (
-                            <>
-                                <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${s.color}22` }}>{s.icon}</div>
-                                <h3 className="m-0 text-[18px] font-extrabold">{t.services.items[i]}</h3>
-                                <span className="font-bold text-sm" style={{ color: s.color }}>{t.services.more}</span>
-                            </>
-                        );
-                        const cls = `${card} p-6 flex flex-col gap-4`;
-                        return s.external ? (
-                            <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
-                        ) : (
-                            <Link key={s.href} href={s.href} className={cls}>{inner}</Link>
-                        );
-                    })}
+            {/* Focus */}
+            <section id="focus" aria-labelledby="focus-title" className={`${wrap} pt-[72px] flex flex-col gap-7 scroll-mt-4`}>
+                <div className="flex flex-col gap-3 max-w-[680px]">
+                    <h2 id="focus-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.focus.title}</h2>
+                    <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.focus.subtitle}</p>
+                </div>
+                <div className="grid grid-cols-1 min-[620px]:grid-cols-2 gap-5">
+                    {t.focus.cards.map((c, i) => (
+                        <div key={c.title} className={`${card} relative overflow-hidden p-7 flex flex-col gap-3`}>
+                            <svg aria-hidden="true" viewBox="0 0 120 100" fill="none" stroke="#F0801A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="pointer-events-none absolute top-0 end-0 w-32 h-28 opacity-15">{focusMotifs[i]}</svg>
+                            <div className="relative flex items-center gap-3">
+                                <div className="w-14 h-14 rounded-full flex items-center justify-center bg-[#1A1F2B] shrink-0">{focusIcons[i]}</div>
+                                <h3 className="m-0 text-xl font-extrabold">{c.title}</h3>
+                            </div>
+                            <p className="relative m-0 text-sm leading-[1.9] text-[#9AA3B2]">{c.description}</p>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -286,7 +287,7 @@ export default function Home() {
             </section>
 
             {/* About */}
-            <section id="about" aria-labelledby="about-title" className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
+            <section id="about" aria-labelledby="about-title" className={`${wrap} pt-[72px] flex flex-col gap-6 scroll-mt-4`}>
                 <div className={`${card} p-8 flex flex-col gap-4`}>
                     <p className={`m-0 ${eyebrow}`}>{t.about.eyebrow}</p>
                     <h2 id="about-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.about.tagline}</h2>
@@ -316,7 +317,29 @@ export default function Home() {
                 <div className="border-t border-[#232836] pt-8 flex flex-col gap-2">
                     <h3 className="m-0 text-2xl font-extrabold">{t.about.contactTitle}</h3>
                     <p className="m-0 text-[#9AA3B2]">{t.about.contactText}</p>
-                    <a href="mailto:sayed.5atab@gmail.com" dir="ltr" className="self-start font-bold text-[#F0801A]">sayed.5atab@gmail.com ↗</a>
+                    <a href="mailto:5atab.work@gmail.com" dir="ltr" className="self-start font-bold text-[#F0801A]">5atab.work@gmail.com ↗</a>
+                </div>
+            </section>
+
+            {/* Services */}
+            <section id="services" aria-labelledby="services-title" className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
+                <h2 id="services-title" className="m-0 text-2xl sm:text-3xl font-extrabold">{t.services.title}</h2>
+                <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
+                    {serviceMeta.map((s, i) => {
+                        const inner = (
+                            <>
+                                <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: `${s.color}22` }}>{s.icon}</div>
+                                <h3 className="m-0 text-[18px] font-extrabold">{t.services.items[i]}</h3>
+                                <span className="font-bold text-sm" style={{ color: s.color }}>{t.services.more}</span>
+                            </>
+                        );
+                        const cls = `${card} p-6 flex flex-col gap-4`;
+                        return s.external ? (
+                            <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                        ) : (
+                            <Link key={s.href} href={s.href} className={cls}>{inner}</Link>
+                        );
+                    })}
                 </div>
             </section>
         </div>

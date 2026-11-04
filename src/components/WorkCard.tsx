@@ -7,7 +7,7 @@ export default function WorkCard({ item }: { item: WorkItem }) {
         <article id={item.slug} className="work-card">
             {item.image ? (
                 <figure className="work-figure">
-                    <div className="work-image"><Image src={item.image.src} alt={item.image.alt} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover object-top" /></div>
+                    <div className="work-image"><Image src={item.image.src} alt={item.image.alt} unoptimized={item.image.src.endsWith(".svg")} fill sizes="(max-width: 767px) 100vw, 50vw" className="object-cover object-top" /></div>
                     {item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}
                 </figure>
             ) : (

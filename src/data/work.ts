@@ -10,6 +10,7 @@ export interface WorkItem {
     description: string;
     contributions: string[];
     tags: string[];
+    featured?: boolean;
     image?: { src: string; alt: string };
     imageCaption?: string;
     caseStudy?: string;
@@ -19,6 +20,7 @@ export interface WorkItem {
 export const work: WorkItem[] = [
     {
         slug: "schoolz-routz",
+        featured: true,
         title: "Routz",
         category: "company",
         employer: "Schoolz (Routz Platform)",
@@ -34,7 +36,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["Vue 3", "Node.js sockets", "Live chat", "GPS tracking", "PayTabs", "Arabic/English"],
         image: {
-            src: "/projects/routz/live-tracking.png",
+            src: "/covers/schoolz-routz.svg",
             alt: "Routz live fleet tracking map",
         },
         caseStudy: "/projects/routz",
@@ -42,6 +44,7 @@ export const work: WorkItem[] = [
     },
     {
         slug: "untap",
+        featured: true,
         title: "Untap",
         category: "company",
         employer: "Untap",
@@ -59,7 +62,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "AI screening", "Stripe", "ISO 27001"],
         image: {
-            src: "/projects/untap/dashboard-overview.png",
+            src: "/covers/untap.svg",
             alt: "Untap platform dashboard overview",
         },
         caseStudy: "/projects/untap",
@@ -67,6 +70,7 @@ export const work: WorkItem[] = [
     },
     {
         slug: "autotager",
+        featured: true,
         title: "AutoTager",
         category: "company",
         employer: "AutoTager",
@@ -80,9 +84,14 @@ export const work: WorkItem[] = [
             "Turned Figma designs into a reusable React component library.",
         ],
         tags: ["React", "B2B marketplace", "Dashboards", "Vehicle inspection"],
+        image: {
+            src: "/covers/autotager.svg",
+            alt: "AutoTager automotive marketplace cover illustration",
+        },
     },
     {
         slug: "botme",
+        featured: true,
         title: "Botme",
         category: "company",
         employer: "Botme",
@@ -96,6 +105,10 @@ export const work: WorkItem[] = [
             "Designed user flows for visual automation and interactive forms.",
         ],
         tags: ["Vue.js", "Angular", "Chatbots", "Workflow automation", "E-commerce"],
+        image: {
+            src: "/covers/botme.svg",
+            alt: "Botme chatbot builder cover illustration",
+        },
     },
     {
         slug: "earlier-agency-work",
@@ -111,9 +124,14 @@ export const work: WorkItem[] = [
             "Integrated third-party APIs for client projects.",
         ],
         tags: ["WordPress", "WooCommerce", "Shopify", "API integration"],
+        image: {
+            src: "/covers/earlier-agency-work.svg",
+            alt: "Storefront and browser window cover illustration for earlier agency work",
+        },
     },
     {
         slug: "zads",
+        featured: true,
         title: "Zads",
         category: "freelance",
         employer: "Personal project",
@@ -129,7 +147,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["Next.js 16", "React", "TypeScript", "Node.js", "PostgreSQL", "Prisma", "Open source"],
         image: {
-            src: "/projects/zads/landing-page.png",
+            src: "/covers/zads.svg",
             alt: "Zads education platform landing page",
         },
         caseStudy: "/projects/zads",
@@ -137,6 +155,7 @@ export const work: WorkItem[] = [
     },
     {
         slug: "fleet-billing",
+        featured: true,
         title: "Fleet Billing (lite)",
         category: "freelance",
         employer: "Personal project",
@@ -153,7 +172,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["Next.js 16", "NestJS", "Prisma", "Supabase RLS", "Stripe", "Vitest", "Playwright", "Arabic/English"],
         image: {
-            src: "/projects/fleet-billing/operator-dashboard.png",
+            src: "/covers/fleet-billing.svg",
             alt: "Fleet Billing operator dashboard with revenue, seat utilization, and the bus list",
         },
         caseStudy: "/projects/fleet-billing",
@@ -161,6 +180,7 @@ export const work: WorkItem[] = [
     },
     {
         slug: "yanfaa",
+        featured: true,
         title: "Yanfaa",
         category: "freelance",
         employer: "Freelance client project",
@@ -174,7 +194,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["HTML", "CSS", "Responsive design", "Performance"],
         image: {
-            src: "/projects/yanfaa/current-site.png",
+            src: "/covers/yanfaa.svg",
             alt: "Current Yanfaa public website homepage in Arabic",
         },
         imageCaption:
@@ -195,7 +215,7 @@ export const work: WorkItem[] = [
         ],
         tags: ["Sylius", "E-commerce", "Storefront UX"],
         image: {
-            src: "/projects/wellpal/current-site.png",
+            src: "/covers/wellpal.svg",
             alt: "Current WellPal Web SA storefront homepage",
         },
         imageCaption:
@@ -216,6 +236,10 @@ export const work: WorkItem[] = [
             "Worked on frontend performance and scalability for the product experience.",
         ],
         tags: ["Marketing websites", "Investor dashboard", "Security", "Performance", "Scalability"],
+        image: {
+            src: "/covers/fundseer.svg",
+            alt: "FundSeer growth chart cover illustration",
+        },
     },
     {
         slug: "kadouscope",
@@ -230,6 +254,10 @@ export const work: WorkItem[] = [
             "Optimized rendering speed, responsive usability, and visual consistency.",
         ],
         tags: ["React", "Analytics", "Responsive design", "Rendering"],
+        image: {
+            src: "/covers/kadouscope.svg",
+            alt: "Kadouscope analytics globe cover illustration",
+        },
     },
     {
         slug: "movex",
@@ -245,5 +273,9 @@ export const work: WorkItem[] = [
             "Integrated the shipment-tracking API into the interface.",
         ],
         tags: ["Logistics", "Shipment tracking", "API integration", "Responsive design"],
+        image: {
+            src: "/covers/movex.svg",
+            alt: "Movex shipment route cover illustration",
+        },
     },
 ];

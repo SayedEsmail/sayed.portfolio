@@ -16,6 +16,6 @@ export default function AboutPage() {
             <article className="about-panel"><p className="eyebrow">Alongside company work</p><h2>Independent projects</h2><p>I’m the founder and full-stack engineer behind Zads, a personal education product started in 2024. Explore Zads and Fleet Billing, a school-bus subscriptions and billing project, alongside Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex in my freelance portfolio.</p><Link className="text-link" href="/projects#freelance">Explore freelance work →</Link></article>
             <article className="about-panel"><p className="eyebrow">Background</p><h2>Education & languages</h2><p>Bachelor of Arts, Philosophy<br />Damanhour University · 2009–2013</p><p>Arabic — Native<br />English — Full professional proficiency</p></article>
         </section>
-        <section className="work-contact"><h2>Let’s work together.</h2><p>For frontend engineering, product interfaces, and team leadership.</p><a className="text-link" href="mailto:sayed.5atab@gmail.com">sayed.5atab@gmail.com ↗</a><ContactLinks className="mt-6" /></section>
+        <section className="work-contact"><h2>Let’s work together.</h2><p>For frontend engineering, product interfaces, and team leadership.</p><a className="text-link" href="mailto:5atab.work@gmail.com">5atab.work@gmail.com ↗</a><ContactLinks className="mt-6" /></section>
     </div>;
 }

@@ -114,10 +114,10 @@ export default async function ArticlePage({ params }: PageProps) {
                     </div>
                     <div className="flex items-center gap-3">
                         <a
-                            href="mailto:sayed.5atab@gmail.com"
+                            href="mailto:5atab.work@gmail.com"
                             className="font-mono text-xs font-semibold text-center text-accent border border-accent/20 hover:border-accent bg-accent/5 px-4 py-2.5 rounded-md transition-all duration-300"
                         >
-                            sayed.5atab@gmail.com
+                            5atab.work@gmail.com
                         </a>
                         <a
                             href="https://www.linkedin.com/in/sayed-esmail-khattab"

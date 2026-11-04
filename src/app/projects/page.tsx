@@ -29,7 +29,7 @@ export default function ProjectsPage() {
                 <div className="work-section-heading"><p className="eyebrow">{section.label}</p><h2 id={`${section.id}-heading`}>{section.title}</h2><p>{section.description}</p></div>
                 <div className="work-grid">{work.filter(item => item.category === section.id).map(item => <WorkCard key={item.slug} item={item} />)}</div>
             </section>)}
-            <aside className="work-contact"><h2>Have a product in mind?</h2><p>Let’s talk about the interface, the users, and what needs to work better.</p><a href="mailto:sayed.5atab@gmail.com" className="text-link">sayed.5atab@gmail.com ↗</a></aside>
+            <aside className="work-contact"><h2>Have a product in mind?</h2><p>Let’s talk about the interface, the users, and what needs to work better.</p><a href="mailto:5atab.work@gmail.com" className="text-link">5atab.work@gmail.com ↗</a></aside>
         </div>
     );
 }

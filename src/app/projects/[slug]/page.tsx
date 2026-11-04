@@ -349,7 +349,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     </div>
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
                         <a
-                            href="mailto:sayed.5atab@gmail.com"
+                            href="mailto:5atab.work@gmail.com"
                             className="inline-flex items-center justify-center font-mono text-xs font-medium text-[#0a0a0a] bg-accent hover:bg-accent-hover px-5 py-3 rounded-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 select-none text-center"
                         >
                             Email Sayed

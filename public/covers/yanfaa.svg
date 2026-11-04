@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img">
+<defs>
+<radialGradient id="g1" cx="50%" cy="48%" r="55%"><stop offset="0" stop-color="#F0801A" stop-opacity=".38"/><stop offset="1" stop-color="#F0801A" stop-opacity="0"/></radialGradient>
+<radialGradient id="g2" cx="90%" cy="8%" r="45%"><stop offset="0" stop-color="#7C4DFF" stop-opacity=".25"/><stop offset="1" stop-color="#7C4DFF" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#fff" fill-opacity=".09"/></pattern>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#0F1218" stop-opacity="0"/><stop offset="1" stop-color="#0F1218" stop-opacity=".7"/></radialGradient>
+</defs>
+<rect width="1200" height="750" fill="#0F1218"/>
+<rect width="1200" height="750" fill="url(#g1)"/>
+<rect width="1200" height="750" fill="url(#g2)"/>
+<rect width="1200" height="750" fill="url(#dots)"/>
+<rect width="1200" height="750" fill="url(#vig)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+
+<g stroke="#fff" stroke-opacity=".7" stroke-width="4"><rect x="150" y="170" width="520" height="340" rx="16"/><path d="M150 215h520"/><path d="M370 510l-20 60h120l-20-60"/><path d="M320 570h220"/></g>
+<g stroke="#F0801A" stroke-width="4"><rect x="630" y="260" width="240" height="320" rx="20"/><circle cx="750" cy="555" r="8"/></g>
+<g stroke="#fff" stroke-opacity=".7" stroke-width="4"><rect x="900" y="330" width="130" height="250" rx="22"/><path d="M945 350h40"/></g>
+<g stroke="#fff" stroke-opacity=".25"><path d="M190 260h200M190 300h300M190 340h140"/><rect x="190" y="390" width="130" height="80" rx="8"/><rect x="350" y="390" width="130" height="80" rx="8"/><path d="M660 320h200M660 360h160M660 400h200M920 400h90M920 440h70"/></g>
+<circle cx="180" cy="192" r="6" stroke="#F0801A"/><circle cx="204" cy="192" r="6" stroke="#F0801A"/><circle cx="228" cy="192" r="6" stroke="#fff" stroke-opacity=".25"/>
+<path d="M240 650h720" stroke="#fff" stroke-opacity=".25"/>
+</g>
+</svg>

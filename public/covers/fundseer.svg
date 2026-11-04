@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img">
+<defs>
+<radialGradient id="g1" cx="50%" cy="48%" r="55%"><stop offset="0" stop-color="#F0801A" stop-opacity=".38"/><stop offset="1" stop-color="#F0801A" stop-opacity="0"/></radialGradient>
+<radialGradient id="g2" cx="90%" cy="8%" r="45%"><stop offset="0" stop-color="#7C4DFF" stop-opacity=".25"/><stop offset="1" stop-color="#7C4DFF" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#fff" fill-opacity=".09"/></pattern>
+<linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
+<radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#0F1218" stop-opacity="0"/><stop offset="1" stop-color="#0F1218" stop-opacity=".7"/></radialGradient>
+</defs>
+<rect width="1200" height="750" fill="#0F1218"/>
+<rect width="1200" height="750" fill="url(#g1)"/>
+<rect width="1200" height="750" fill="url(#g2)"/>
+<rect width="1200" height="750" fill="url(#dots)"/>
+<rect width="1200" height="750" fill="url(#vig)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+
+<g stroke="#fff" stroke-opacity=".25"><path d="M120 150v470h960M120 540h960M120 450h960M120 360h960M120 270h960"/></g>
+<path d="M60 600 L60 600 L90 589 L120 578 L150 569 L180 562 L210 558 L240 557 L270 557 L300 560 L330 564 L360 569 L390 572 L420 575 L450 575 L480 574 L510 569 L540 562 L570 553 L600 542 L630 530 L660 519 L690 509 L720 500 L750 494 L780 490 L810 489 L840 490 L870 493 L900 497 L930 501 L960 505 L990 507 L1020 508 L1050 505 L1080 500 L1110 493 L1140 483" stroke="#fff" stroke-opacity=".25"/><path d="M60 560 L60 560 L90 546 L120 534 L150 524 L180 518 L210 515 L240 517 L270 521 L300 527 L330 534 L360 540 L390 544 L420 544 L450 541 L480 534 L510 523 L540 510 L570 496 L600 483 L630 471 L660 462 L690 456 L720 455 L750 457 L780 462 L810 469 L840 475 L870 481 L900 484 L930 483 L960 479 L990 471 L1020 460 L1050 447 L1080 432 L1110 419 L1140 408" stroke="#fff" stroke-opacity=".7"/>
+<path d="M140 560L260 500L360 520L480 420L600 450L720 330L840 360L960 230L1060 190" stroke="#F0801A" stroke-width="5"/>
+<g stroke="#F0801A"><circle cx="260" cy="500" r="9"/><circle cx="480" cy="420" r="9"/><circle cx="720" cy="330" r="9"/><circle cx="960" cy="230" r="9"/></g>
+<path d="M1020 175l45 15-22 40" stroke="#F0801A" stroke-width="5"/>
+<g stroke="#fff" stroke-opacity=".7"><path d="M180 620v-40M220 620v-70M260 620v-30M300 620v-80"/></g>
+</g>
+</svg>
