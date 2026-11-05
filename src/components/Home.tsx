@@ -45,7 +45,6 @@ const serviceMeta = [
     { href: "https://sayed-hub.vercel.app/store-check", color: "#2F7CF6", external: true, icon: <svg {...svg} stroke="#2F7CF6"><path d="M3 9h18l-1.5 11h-15L3 9Z" /><path d="M8 9V6a4 4 0 0 1 8 0v3" /><path d="m9 14 2 2 4-4" /></svg> },
     { href: "https://maqru.vercel.app", color: "#17A36A", external: true, icon: <svg {...svg} stroke="#17A36A"><circle cx="12" cy="12" r="3" /><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" /></svg> },
     { href: "/migration", color: "#F0801A", external: false, icon: <svg {...svg} stroke="#F0801A"><path d="M21 12a9 9 0 0 1-15.5 6.2M3 12a9 9 0 0 1 15.5-6.2" /><path d="M21 4v5h-5M3 20v-5h5" /></svg> },
-    { href: "https://namu-nursery.vercel.app", color: "#7C4DFF", external: true, icon: <svg {...svg} stroke="#7C4DFF"><path d="M12 22V12M12 12c-4 0-7-3-7-7 4 0 7 3 7 7Zm0 0c4 0 7-3 7-7-4 0-7 3-7 7Z" /></svg> },
 ];
 
 type View = WorkItem & { contributions: string[] };
@@ -67,12 +66,15 @@ export default function Home() {
         { n: String(articles.length), t: t.stats.articles },
     ];
 
-    const renderGrid = (items: View[], label: string, cols: string) => (
+    // compact: cover on the side, no description, at most three tags (company cards)
+    const renderGrid = (items: View[], label: string, cols: string, compact = false) => (
         <div className={`grid grid-cols-1 gap-5 items-stretch ${cols}`}>
             {items.map((item) => {
+                const tags = compact ? item.tags.slice(0, 3) : item.tags;
+                const extra = item.tags.length - tags.length;
                 return (
-                <article key={item.slug} id={item.slug} className={`${card} group overflow-hidden flex flex-col scroll-mt-4 `}>
-                    <div className={`relative overflow-hidden rounded-t-[20px] bg-[#0F1218] aspect-[16/10]`}>
+                <article key={item.slug} id={item.slug} className={`${card} group overflow-hidden flex flex-col scroll-mt-4 ${compact ? "sm:flex-row" : ""}`}>
+                    <div className={`relative overflow-hidden bg-[#0F1218] ${compact ? "aspect-[16/9] sm:aspect-auto sm:w-[38%] sm:shrink-0 sm:self-stretch rounded-t-[20px] sm:rounded-t-none sm:rounded-s-[20px]" : "rounded-t-[20px] aspect-[16/10]"}`}>
                         {item.image && (
                             <Image
                                 src={item.image.src}
@@ -84,21 +86,22 @@ export default function Home() {
                             />
                         )}
                         <div aria-hidden="true" className="absolute inset-0 opacity-0 motion-safe:transition-opacity motion-safe:duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at 50% 45%, rgba(240,128,26,.22), transparent 65%)" }} />
-                        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent" />
+                        <div aria-hidden="true" className={`absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent ${compact ? "sm:hidden" : ""}`} />
                     </div>
-                    <div className="p-6 flex flex-col gap-3 flex-1">
+                    <div className={`p-6 flex flex-col gap-3 flex-1 ${compact ? "sm:p-5 sm:gap-2" : ""}`}>
                         <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-[11px] text-[#9AA3B2]">
                             <span className="text-[#F0801A] font-bold uppercase tracking-[.08em]">{label}</span>
                             {item.period && <span dir="ltr">{item.period}</span>}
                         </div>
-                        <h3 className="m-0 text-2xl font-extrabold">{item.title}</h3>
+                        <h3 className={`m-0 font-extrabold ${compact ? "text-xl" : "text-2xl"}`}>{item.title}</h3>
                         <p className="m-0 text-xs text-[#9AA3B2] leading-[1.7]">{item.role}{item.category === "company" && item.employer !== item.title ? ` · ${item.employer}` : ""}</p>
-                        <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC]">{item.description}</p>
-                        <div className="flex flex-wrap gap-2 pt-2" dir="ltr">
-                            {item.tags.map((tag) => <span key={tag} className={tagCls}>{tag}</span>)}
+                        {!compact && <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC] line-clamp-2">{item.description}</p>}
+                        <div className={`flex flex-wrap gap-2 ${compact ? "pt-1" : "pt-2"}`} dir="ltr">
+                            {tags.map((tag) => <span key={tag} className={tagCls}>{tag}</span>)}
+                            {extra > 0 && <span className={tagCls} title={item.tags.slice(3).join(", ")}>+{extra}</span>}
                         </div>
                         {(item.caseStudy || item.liveUrl) ? (
-                            <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 border-t border-[#232836] pt-4 text-sm font-bold text-[#F0801A]">
+                            <div className={`mt-auto flex flex-wrap gap-x-5 gap-y-2 border-t border-[#232836] text-sm font-bold text-[#F0801A] ${compact ? "pt-3" : "pt-4"}`}>
                                 {item.caseStudy && <Link href={item.caseStudy}>{t.work.caseStudy} <span aria-hidden="true">{isAr ? "←" : "→"}</span></Link>}
                                 {item.liveUrl && <a href={item.liveUrl} target="_blank" rel="noopener noreferrer">{t.work.visit} <span aria-hidden="true">↗</span></a>}
                             </div>
@@ -208,7 +211,7 @@ export default function Home() {
                             <h3 className="m-0 text-2xl font-extrabold">{t.work.companyTitle}</h3>
                             <p className="m-0 leading-[1.9] text-[#9AA3B2]">{t.work.companyText}</p>
                         </div>
-                        {renderGrid(featuredCompany, t.work.companyTag, "min-[768px]:grid-cols-2")}
+                        {renderGrid(featuredCompany, t.work.companyTag, "min-[768px]:grid-cols-2", true)}
                         <Link href="/projects#company" className="self-start font-bold text-[#F0801A]">{t.work.companyLink}</Link>
                     </div>
 
@@ -360,7 +363,7 @@ export default function Home() {
             <section id="services" aria-labelledby="services-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0B0D12" }}>
                 <div className={`${wrap} relative pt-[72px] pb-[72px] pb-[72px] flex flex-col gap-6 scroll-mt-4`}>
                     <h2 id="services-title" className="m-0 text-2xl sm:text-3xl font-extrabold">{t.services.title}</h2>
-                    <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-4 gap-5">
+                    <div className="grid grid-cols-1 min-[560px]:grid-cols-2 min-[1024px]:grid-cols-3 gap-5">
                         {serviceMeta.map((s, i) => {
                             const inner = (
                                 <>

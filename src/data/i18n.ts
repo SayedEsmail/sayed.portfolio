@@ -42,7 +42,7 @@ export const ui = {
         },
         services: {
             title: "Services", more: "Learn more →",
-            items: ["Salla & Zid store check", "Maqru accessibility", "Legacy Vue/Nuxt migration", "Namu nursery system"],
+            items: ["Salla & Zid store check", "Maqru accessibility", "Legacy Vue/Nuxt migration"],
         },
         articles: {
             title: "Mini Technical Articles",
@@ -107,7 +107,7 @@ export const ui = {
         },
         services: {
             title: "الخدمات", more: "اعرف المزيد ←",
-            items: ["فحص متاجر سلة وزد", "مقروء لإمكانية الوصول", "تحديث المواقع القديمة", "نَمو لإدارة الحضانات"],
+            items: ["فحص متاجر سلة وزد", "مقروء لإمكانية الوصول", "تحديث المواقع القديمة"],
         },
         articles: {
             title: "مقالات تقنية قصيرة",
