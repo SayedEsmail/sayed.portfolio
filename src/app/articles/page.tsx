@@ -4,6 +4,8 @@ import Link from "next/link";
 import { articles } from "@/data/articles";
 import SectionHeading from "@/components/SectionHeading";
 import FadeIn from "@/components/FadeIn";
+import Glow from "@/components/Glow";
+import { wrap, bandBase, bandAlt, card, eyebrow } from "@/components/ui";
 
 export const metadata: Metadata = {
     title: "Technical Writing & Core Guidelines",
@@ -12,58 +14,51 @@ export const metadata: Metadata = {
 
 export default function ArticlesPage() {
     return (
-        <div className="max-w-6xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-12">
-            {/* Header */}
-            <div className="max-w-3xl">
-                <FadeIn delay={100}>
-                    <span className="font-mono text-xs text-accent tracking-widest uppercase font-semibold mb-3 block">
-                        Technical Writing
-                    </span>
-                </FadeIn>
-                <FadeIn delay={200}>
-                    <SectionHeading
-                        title="Engineering Guides &amp; Lessons"
-                        subtitle="A small catalog of technical guides authored to capture system architecture decisions, performance optimization bottlenecks, and frontend standards established on production apps."
-                    />
-                </FadeIn>
-            </div>
-
-            {/* Articles List */}
-            <div className="flex flex-col gap-6 max-w-4xl mt-6">
-                {articles.map((article, index) => (
-                    <FadeIn key={article.slug} delay={100 * (index + 1)}>
-                        <div className="p-6 rounded-xl border border-neutral-900 bg-neutral-950/20 hover:border-accent/20 transition-all duration-300 relative group flex flex-col justify-between md:flex-row md:items-center gap-4">
-                            {article.cover && (
-                                <div className="relative w-full md:w-56 shrink-0 aspect-[16/9] rounded-lg overflow-hidden bg-neutral-950">
-                                    <Image src={article.cover} alt="" fill unoptimized sizes="(max-width: 767px) 100vw, 224px" className="object-cover" />
-                                </div>
-                            )}
-                            <div className="flex-grow max-w-2xl">
-                                <div className="flex items-center gap-3 text-[10px] font-mono text-neutral-500 mb-2">
-                                    <span>{article.date}</span>
-                                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-800"></span>
-                                    <span>{article.readTime}</span>
-                                </div>
-                                <h2 className="text-lg font-bold text-white mb-2 font-mono group-hover:text-accent transition-colors duration-300">
-                                    <Link href={`/articles/${article.slug}`}>
-                                        <span className="absolute inset-0" aria-hidden="true" />
-                                        {article.title}
-                                    </Link>
-                                </h2>
-                                <p className="text-neutral-400 text-xs sm:text-sm font-mono leading-relaxed">
-                                    {article.subtitle}
-                                </p>
-                            </div>
-                            <div className="text-xs font-mono text-accent shrink-0 flex items-center gap-1.5 self-start md:self-center">
-                                Read Article
-                                <svg className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                        </div>
+        <>
+            <header className={bandBase}>
+                <Glow className="-top-48 end-[-160px]" />
+                <div className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-4`}>
+                    <FadeIn delay={100}>
+                        <p className={`m-0 ${eyebrow}`}>Technical Writing</p>
                     </FadeIn>
-                ))}
-            </div>
-        </div>
+                    <FadeIn delay={200}>
+                        <SectionHeading
+                            level={1}
+                            title="Engineering Guides &amp; Lessons"
+                            subtitle="A small catalog of technical guides authored to capture system architecture decisions, performance optimization bottlenecks, and frontend standards established on production apps."
+                        />
+                    </FadeIn>
+                </div>
+            </header>
+            <section className={bandAlt} aria-label="Articles">
+                <div className={`${wrap} pt-[72px] pb-[72px]`}>
+                    <div className="grid grid-cols-1 min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3 gap-5">
+                        {articles.map((article, index) => (
+                            <FadeIn key={article.slug} delay={100 * (index + 1)} className="flex">
+                                <article className={`${card} group relative overflow-hidden flex flex-col w-full`}>
+                                    {article.cover && (
+                                        <div className="relative aspect-[16/9] overflow-hidden rounded-t-[20px] bg-[#0F1218]">
+                                            <Image src={article.cover} alt="" fill unoptimized sizes="(max-width: 619px) 100vw, (max-width: 1023px) 50vw, 33vw" className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]" />
+                                            <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent" />
+                                        </div>
+                                    )}
+                                    <div className="p-6 flex flex-col gap-3 flex-1">
+                                        <div className="flex justify-between text-[11px] text-[#9AA3B2]"><span>{article.date}</span><span>{article.readTime}</span></div>
+                                        <h2 className="m-0 text-base font-extrabold leading-[1.6] text-[#F3F4F6]">
+                                            <Link href={`/articles/${article.slug}`}>
+                                                <span className="absolute inset-0" aria-hidden="true" />
+                                                {article.title}
+                                            </Link>
+                                        </h2>
+                                        <p className="m-0 text-sm leading-[1.8] text-[#9AA3B2]">{article.subtitle}</p>
+                                        <span className="mt-auto pt-2 text-sm font-bold text-[#F0801A]">Read Article <span aria-hidden="true">→</span></span>
+                                    </div>
+                                </article>
+                            </FadeIn>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </>
     );
 }

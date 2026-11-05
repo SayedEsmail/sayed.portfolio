@@ -46,7 +46,7 @@ export default function ContactLinks({ className = "", iconClassName = "" }: Con
                     target={link.name !== "Email" ? "_blank" : undefined}
                     rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
                     aria-label={link.aria}
-                    className={`flex items-center justify-center w-10 h-10 rounded-lg border border-neutral-800 bg-neutral-900/30 text-neutral-400 transition-all duration-300 hover:border-accent hover:text-accent hover:bg-accent/5 hover:-translate-y-0.5 ${iconClassName}`}
+                    className={`flex items-center justify-center w-12 h-12 rounded-full border border-[#2A3040] bg-[#1A1F2B] text-[#F3F4F6] motion-safe:transition-all motion-safe:duration-300 hover:border-[#F0801A] hover:text-[#F0801A] motion-safe:hover:-translate-y-0.5 ${iconClassName}`}
                 >
                     {link.icon}
                 </a>

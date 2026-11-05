@@ -252,7 +252,7 @@ export default function Home() {
                                             <ul className="m-0 ps-5 list-disc marker:text-[#F0801A] text-sm leading-[1.9] text-[#C9D0DC] flex flex-col gap-1.5">
                                                 {item.contributions.map((c) => <li key={c}>{c}</li>)}
                                             </ul>
-                                            <a href={`#${item.slug}`} className="self-start text-sm font-bold text-[#F0801A]">{t.experience.view}</a>
+                                            <a href={`/projects#${item.slug}`} className="self-start text-sm font-bold text-[#F0801A]">{t.experience.view}</a>
                                         </div>
                                     </TimelineItem>
                                 );

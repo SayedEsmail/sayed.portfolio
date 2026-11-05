@@ -1,22 +1,19 @@
+import { h2Cls, lead } from "./ui";
+
 interface SectionHeadingProps {
     id?: string;
     title: string;
     subtitle?: string;
     className?: string;
+    level?: 1 | 2;
 }
 
-export default function SectionHeading({ id, title, subtitle, className = "" }: SectionHeadingProps) {
+export default function SectionHeading({ id, title, subtitle, className = "", level = 2 }: SectionHeadingProps) {
+    const Heading = level === 1 ? "h1" : "h2";
     return (
-        <div className={`mb-10 ${className}`}>
-            <h2 id={id} className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3 flex items-center gap-3">
-                <span className="w-1.5 h-6 bg-accent rounded-full inline-block"></span>
-                {title}
-            </h2>
-            {subtitle && (
-                <p className="text-muted text-sm max-w-2xl font-mono tracking-tight leading-relaxed pl-4.5 border-l border-neutral-800">
-                    {subtitle}
-                </p>
-            )}
+        <div className={`flex flex-col gap-3 max-w-[760px] ${className}`}>
+            <Heading id={id} className={h2Cls}>{title}</Heading>
+            {subtitle && <p className={lead}>{subtitle}</p>}
         </div>
     );
 }

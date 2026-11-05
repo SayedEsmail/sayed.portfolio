@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/data/projects";
 import TechBadge from "./TechBadge";
+import { card } from "./ui";
 
 interface ProjectCardProps {
     project: Project;
@@ -9,57 +10,32 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <div className="group relative rounded-xl border border-neutral-900 bg-neutral-950/40 overflow-hidden hover:border-accent/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,212,170,0.05)] flex flex-col h-full">
-            {/* Hover Accent Glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-            {/* Project Image Container */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-neutral-950">
+        <div className={`${card} group relative overflow-hidden flex flex-col h-full`}>
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-t-[20px] bg-[#0F1218]">
                 <Image
                     src={project.heroImage}
                     alt={`${project.title} Screenshot`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                    className="object-cover object-top motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-neutral-950/20 group-hover:bg-neutral-950/0 transition-colors duration-500" />
+                <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#12151C] to-transparent" />
             </div>
-
-            {/* Project Details */}
-            <div className="p-6 flex flex-col flex-grow relative z-10">
-                {/* Role / Order indicator */}
-                <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono text-accent uppercase tracking-wider font-semibold">
-                        {project.role}
-                    </span>
-                    <span className="text-[11px] font-mono text-neutral-600">
-                        0{project.order}
-                    </span>
+            <div className="p-6 flex flex-col gap-3 flex-1">
+                <div className="flex items-center justify-between gap-4 text-[11px] text-[#9AA3B2]">
+                    <span className="text-[#F0801A] font-bold uppercase tracking-[.08em]">{project.role}</span>
+                    <span>0{project.order}</span>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold tracking-tight text-white mb-2 group-hover:text-accent transition-colors duration-300">
-                    <Link href={`/projects/${project.slug}`} className="focus-visible:underline">
+                <h3 className="m-0 text-2xl font-extrabold text-[#F3F4F6]">
+                    <Link href={`/projects/${project.slug}`}>
                         <span className="absolute inset-0" aria-hidden="true" />
                         {project.title}
                     </Link>
                 </h3>
-
-                {/* Subtitle / Description */}
-                <p className="text-neutral-400 text-xs font-mono leading-relaxed mb-6 flex-grow line-clamp-3">
-                    {project.subtitle}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-neutral-900/60">
-                    {project.tags.slice(0, 4).map((tag) => (
-                        <TechBadge key={tag} name={tag} />
-                    ))}
-                    {project.tags.length > 4 && (
-                        <span className="text-[10px] text-neutral-500 font-mono self-center ml-1">
-                            +{project.tags.length - 4} more
-                        </span>
-                    )}
+                <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC] line-clamp-3">{project.subtitle}</p>
+                <div className="flex flex-wrap gap-2 pt-2 mt-auto">
+                    {project.tags.slice(0, 4).map((tag) => <TechBadge key={tag} name={tag} />)}
+                    {project.tags.length > 4 && <span className="text-[11px] text-[#9AA3B2] self-center">+{project.tags.length - 4} more</span>}
                 </div>
             </div>
         </div>

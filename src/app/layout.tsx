@@ -58,7 +58,7 @@ export default function RootLayout({
             lang="en"
             className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} h-full antialiased dark`}
         >
-            <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent/15 selection:text-accent font-sans">
+            <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-[#F0801A]/25 selection:text-[#F3F4F6] font-sans">
                 <a className="skip-link" href="#main-content">Skip to content</a>
                 <LangProvider>
                     <Navbar />
