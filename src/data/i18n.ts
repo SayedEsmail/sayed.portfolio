@@ -33,7 +33,6 @@ export const ui = {
             freelanceEyebrow: "02 / Freelance projects", freelanceTitle: "Delivered for clients.",
             freelanceText: "Zads, Fleet Billing, Yanfaa, Wellpal, FundSeer, Kadouscope, and Movex. Products, redesigns, storefronts, and dashboards.",
             companyLink: "Explore company projects →", freelanceLink: "Explore freelance projects →",
-            all: "Explore all →", preview: "Preview portfolio →",
             caseStudy: "Read case study", visit: "Visit website", companyTag: "Company work", freelanceTag: "Freelance",
         },
         experience: {
@@ -99,7 +98,6 @@ export const ui = {
             freelanceEyebrow: "02 / مشاريع العمل الحر", freelanceTitle: "سُلّمت للعملاء.",
             freelanceText: "Zads وFleet Billing وYanfaa وWellpal وFundSeer وKadouscope وMovex. منتجات وإعادة تصميم ومتاجر ولوحات تحكم.",
             companyLink: "استعرض مشاريع الشركات ←", freelanceLink: "استعرض مشاريع العمل الحر ←",
-            all: "استعرض الكل ←", preview: "معاينة الملف ←",
             caseStudy: "اقرأ دراسة الحالة", visit: "زيارة الموقع", companyTag: "أعمال الشركات", freelanceTag: "عمل حر",
         },
         experience: {

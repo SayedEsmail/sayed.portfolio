@@ -200,7 +200,7 @@ export default function Home() {
             <section id="work" aria-labelledby="work-title" className="relative overflow-hidden border-y border-[#161A24] scroll-mt-4" style={{ background: "#0F1218" }}>
                 <div aria-hidden="true" className="bd-dots" />
                 <div className={`${wrap} relative pt-[72px] pb-[72px] flex flex-col gap-12 scroll-mt-4`}>
-                    <h2 id="work-title" className="m-0 text-3xl sm:text-4xl font-extrabold">{t.work.title}</h2>
+                    <h2 id="work-title" className="sr-only">{t.work.title}</h2>
 
                     <div className="flex flex-col gap-6">
                         <div className="flex flex-col gap-2 max-w-[720px]">
@@ -220,11 +220,6 @@ export default function Home() {
                         </div>
                         {renderGrid(featuredFreelance, t.work.freelanceTag, "min-[620px]:grid-cols-2 min-[1024px]:grid-cols-3")}
                         <Link href="/projects#freelance" className="self-start font-bold text-[#F0801A]">{t.work.freelanceLink}</Link>
-                    </div>
-
-                    <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-[#232836] pt-6 font-bold">
-                        <Link href="/projects" className="text-[#F0801A]">{t.work.all}</Link>
-                        <Link href="/portfolio" className="text-[#F0801A]">{t.work.preview}</Link>
                     </div>
                 </div>
             </section>
@@ -246,9 +241,10 @@ export default function Home() {
                             {company.map((item, i) => {
                                 const right = i % 2 === 1;
                                 return (
-                                    <TimelineItem key={item.slug} fromEnd={right} className={`relative ps-10 min-[1024px]:w-1/2 ${right ? "min-[1024px]:ps-12 min-[1024px]:ms-auto" : "min-[1024px]:ps-0 min-[1024px]:pe-12"}`}>
-                                        <span aria-hidden="true" className={`absolute top-7 start-0 w-4 h-4 rounded-full bg-[#F0801A] border-4 border-[#0B0D12] shadow-[0_0_0_4px_rgba(240,128,26,.15)] z-10 ${right ? "min-[1024px]:-start-2" : "min-[1024px]:start-auto min-[1024px]:-end-2"}`} />
-                                        <span aria-hidden="true" className={`absolute top-[35px] h-[2px] w-6 start-4 bg-[#F0801A]/60 min-[1024px]:w-12 ${right ? "min-[1024px]:start-0" : "min-[1024px]:start-auto min-[1024px]:end-0"}`} />
+                                    // Cards are 70% wide and overlap the centre line; the dot sits where the line crosses the card
+                                    <TimelineItem key={item.slug} fromEnd={right} className={`relative ps-10 min-[1024px]:ps-0 min-[1024px]:w-[70%] ${right ? "min-[1024px]:ms-auto" : ""}`}>
+                                        <span aria-hidden="true" className={`absolute top-7 start-0 w-4 h-4 rounded-full bg-[#F0801A] border-4 border-[#0B0D12] shadow-[0_0_0_4px_rgba(240,128,26,.15)] z-10 ${right ? "min-[1024px]:start-[calc(28.57%-0.5rem)]" : "min-[1024px]:start-[calc(71.43%-0.5rem)]"}`} />
+                                        <span aria-hidden="true" className="absolute top-[35px] h-[2px] w-6 start-4 bg-[#F0801A]/60 min-[1024px]:hidden" />
                                         <div className={`${card} p-6 flex flex-col gap-3`}>
                                             {item.period && <p className={`m-0 ${eyebrow}`} dir="ltr" style={isAr ? { textAlign: "right" } : undefined}>{item.period}</p>}
                                             <h3 className="m-0 text-xl font-extrabold">{item.employer}</h3>
