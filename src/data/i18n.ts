@@ -15,7 +15,7 @@ export const ui = {
             seeWork: "See my work", talk: "Talk to me", photoAlt: "Sayed Esmail",
         },
         marqueeLabel: "Skills",
-        stats: { years: "Years of experience", companies: "Company roles", freelance: "Freelance projects", articles: "Technical articles" },
+        stats: { years: "Years of experience", companies: "Company roles", freelance: "Freelance projects since 2010", articles: "Technical articles" },
         focus: {
             title: "What I Focus On",
             subtitle: "The engineering work I bring to product teams, from the first interface to a platform ready to grow.",
@@ -80,7 +80,7 @@ export const ui = {
             seeWork: "شاهد أعمالي", talk: "تحدث معي", photoAlt: "سيد إسماعيل",
         },
         marqueeLabel: "المهارات",
-        stats: { years: "سنوات خبرة", companies: "أدوار في شركات", freelance: "مشاريع عمل حر", articles: "مقالات تقنية" },
+        stats: { years: "سنوات خبرة", companies: "أدوار في شركات", freelance: "مشروع عمل حر منذ 2010", articles: "مقالات تقنية" },
         focus: {
             title: "ما الذي أركز عليه",
             subtitle: "العمل الهندسي الذي أقدمه لفرق المنتجات، من أول واجهة إلى منصة جاهزة للنمو.",
@@ -140,7 +140,7 @@ const client = "مشروع لعميل (عمل حر)";
 
 export const workAr: Record<string, WorkAr> = {
     "schoolz-routz": {
-        employer: "Schoolz (منصة Routz)", period: "يناير 2025 – الآن", role: "مهندس واجهات أمامية أول",
+        employer: "Schoolz (منصة Routz)", period: "يناير 2025 – الآن", role: "مهندس برمجيات متكامل أول",
         description: "منصة SaaS لإدارة الأساطيل ونقل الطلاب، مع لوحات تحكم للإدارة والعملاء.",
         contributions: [
             "بنيت الطبقة الفورية من البداية إلى النهاية: تتبع GPS مباشر للرحلات النشطة، ودردشة داخل التطبيق (الخلفية والواجهة للويب وتطبيقات الجوال) تربط المشغّلين والركاب والسائقين عبر خدمات Node.js مخصصة.",

@@ -62,7 +62,7 @@ export default function Home() {
     const stats = [
         { n: "10+", t: t.stats.years },
         { n: String(company.length), t: t.stats.companies },
-        { n: String(freelance.length), t: t.stats.freelance },
+        { n: "100+", t: t.stats.freelance },
         { n: String(articles.length), t: t.stats.articles },
     ];
 
@@ -90,12 +90,12 @@ export default function Home() {
                     </div>
                     <div className={`p-6 flex flex-col gap-3 flex-1 ${compact ? "sm:p-5 sm:gap-2" : ""}`}>
                         <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-[11px] text-[#9AA3B2]">
-                            <span className="text-[#F0801A] font-bold uppercase tracking-[.08em]">{label}</span>
-                            {item.period && <span dir="ltr">{item.period}</span>}
+                            {!compact && <span className="text-[#F0801A] font-bold uppercase tracking-[.08em]">{label}</span>}
+                            {item.period && <span dir="ltr" className={compact ? "ms-auto" : ""}>{item.period}</span>}
                         </div>
                         <h3 className={`m-0 font-extrabold ${compact ? "text-xl" : "text-2xl"}`}>{item.title}</h3>
                         <p className="m-0 text-xs text-[#9AA3B2] leading-[1.7]">{item.role}{item.category === "company" && item.employer !== item.title ? ` · ${item.employer}` : ""}</p>
-                        {!compact && <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC] line-clamp-2">{item.description}</p>}
+                        <p className="m-0 text-sm leading-[1.8] text-[#C9D0DC] line-clamp-2">{item.description}</p>
                         <div className={`flex flex-wrap gap-2 ${compact ? "pt-1" : "pt-2"}`} dir="ltr">
                             {tags.map((tag) => <span key={tag} className={tagCls}>{tag}</span>)}
                             {extra > 0 && <span className={tagCls} title={item.tags.slice(3).join(", ")}>+{extra}</span>}

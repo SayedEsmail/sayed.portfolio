@@ -25,7 +25,7 @@ export const work: WorkItem[] = [
         category: "company",
         employer: "Schoolz (Routz Platform)",
         period: "Jan 2025–Present",
-        role: "Senior Frontend Engineer",
+        role: "Senior Full-Stack Engineer",
         description:
             "A fleet-management and school-transportation SaaS platform with admin and client dashboards.",
         contributions: [

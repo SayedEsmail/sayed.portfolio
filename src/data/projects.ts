@@ -55,7 +55,7 @@ export const projects: Project[] = [
                 alt: "Routz trip management interface",
             },
         ],
-        role: "Senior Frontend Engineer at Schoolz",
+        role: "Senior Full-Stack Engineer at Schoolz",
         featured: true,
         order: 1,
         problem:
