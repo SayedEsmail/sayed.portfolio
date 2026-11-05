@@ -71,7 +71,7 @@ export default function Navbar() {
                             <span className={isAr ? "text-[#F0801A]" : "text-[#9AA3B2]"}>AR</span>
                         </button>
                     )}
-                    <a href="https://wa.me/201066293366" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366] text-white px-3 sm:px-[18px] py-2.5 rounded-[10px] font-bold text-sm">
+                    <a href="https://wa.me/201141688252" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-[#25D366] text-white px-3 sm:px-[18px] py-2.5 rounded-[10px] font-bold text-sm">
                         <WhatsAppIcon size={18} /><span className="hidden sm:inline">{t.whatsapp}</span><span className="sm:hidden sr-only">{t.whatsapp}</span>
                     </a>
                     <button

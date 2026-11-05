@@ -1,7 +1,7 @@
 /** Content for the Arabic /migration page. No prices: the quote is sent before work starts. */
 export const GITHUB_URL = "https://github.com/SayedEsmail";
 export const LINKEDIN_URL = "https://linkedin.com/in/sayed-esmail-khattab";
-export const WHATSAPP_URL = "https://wa.me/201066293366";
+export const WHATSAPP_URL = "https://wa.me/201141688252";
 export const INSTAGRAM_URL = "https://ig.me/m/sayed.5atab";
 export const CONTACT_EMAIL = "5atab.work@gmail.com";
 export const PROOF_REPO_URL = "https://github.com/SayedEsmail/vuetify-material-dashboard";

@@ -175,12 +175,12 @@ body {
 .hero-circle { position: absolute; bottom: 0; width: min(380px, 92%); aspect-ratio: 1; border-radius: 50%; background: linear-gradient(160deg, #F0801A, #7C2D00); opacity: .9; }
 .hero-photo { position: absolute; bottom: 0; width: min(380px, 92%); height: 440px; border-radius: 0 0 190px 190px; overflow: hidden; background: #12151C; }
 .hero-code { position: absolute; top: 150px; left: -30px; width: 250px; }
-.hero-badge-b { position: absolute; bottom: 90px; left: -10px; }
+.hero-badge-b { position: absolute; bottom: 40px; right: -10px; z-index: 2; }
 @media (max-width: 899px) {
     .hero-art { height: 440px; }
     .hero-photo { height: 400px; }
     .hero-code { left: 0; top: 130px; width: 220px; }
-    .hero-badge-b { left: 0; }
+    .hero-badge-b { right: 0; }
 }
 @media (max-width: 480px) {
     .hero-code { display: none; }

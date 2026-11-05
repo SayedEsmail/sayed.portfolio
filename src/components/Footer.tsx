@@ -14,7 +14,7 @@ export default function Footer() {
         <footer dir={lang === "ar" ? "rtl" : "ltr"} lang={lang} className={`${lang === "ar" ? "ar" : ""} relative border-t border-[#232836] bg-[#0B0D12] text-[#F3F4F6]`}>
             <div className="max-w-[1280px] mx-auto px-4 min-[900px]:px-20 py-7 flex flex-col items-center gap-4">
                 <div className="flex flex-wrap gap-3 justify-center">
-                    <a href="https://wa.me/201066293366" aria-label={t.whatsapp} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center"><WhatsAppIcon size={22} /></a>
+                    <a href="https://wa.me/201141688252" aria-label={t.whatsapp} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center"><WhatsAppIcon size={22} /></a>
                     <a href="https://ig.me/m/sayed.5atab" aria-label={t.instagram} target="_blank" rel="noopener noreferrer" className={round}><InstagramIcon size={22} /></a>
                     <a href="mailto:5atab.work@gmail.com" aria-label={t.mail} className={round}>
                         <svg {...stroke}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>

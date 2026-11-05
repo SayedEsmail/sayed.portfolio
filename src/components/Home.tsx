@@ -10,7 +10,7 @@ import { work, type WorkItem } from "@/data/work";
 import { articles } from "@/data/articles";
 
 const DEVTO_COVER = "/covers/articles/vuetify-2-to-vue-3.svg";
-const WA = "https://wa.me/201066293366";
+const WA = "https://wa.me/201141688252";
 const DEVTO = "https://dev.to/sayedesmail/what-migrating-a-vuetify-2-dashboard-to-vue-3-actually-took-2nih";
 
 // Technologies named in the existing work and project data.
