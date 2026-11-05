@@ -63,7 +63,8 @@ export default function Home() {
         { n: "10+", t: t.stats.years },
         { n: String(company.length), t: t.stats.companies },
         { n: "100+", t: t.stats.freelance },
-        { n: String(articles.length), t: t.stats.articles },
+        // +1 for the dev.to article linked in the articles section
+        { n: String(articles.length + 1), t: t.stats.articles },
     ];
 
     // compact: cover on the side, no description, at most three tags (company cards)
