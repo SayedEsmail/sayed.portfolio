@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "Senior Frontend / Full-Stack Engineer in Cairo. Vue, React, and Next.js products: live fleet tracking at Routz, multi-tenant SaaS at Untap, and Arabic/English interfaces built right-to-left first.",
     keywords: ["Senior Frontend Engineer", "Vue 3 Developer", "Next.js Portfolio", "Vuetify 3", "React Developer", "Cairo", "Software Architecture"],
     authors: [{ name: "Sayed Esmail" }],
-    metadataBase: new URL("https://sayed5atab-gilt.vercel.app"),
+    metadataBase: new URL("https://sayedesmail.com"),
     openGraph: {
         title: "Sayed Esmail | Senior Frontend Engineer",
         description: "Vue, React, and Next.js products: live fleet tracking at Routz, multi-tenant SaaS at Untap, and Arabic/English interfaces built right-to-left first.",

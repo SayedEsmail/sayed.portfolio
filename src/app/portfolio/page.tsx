@@ -15,7 +15,7 @@ function Entry({ item, showImage = true }: { item: WorkItem; showImage?: boolean
         {showImage && item.image && <figure><Image unoptimized src={item.image.src} alt={item.image.alt} width={1440} height={820} className="portfolio-image" />{item.imageCaption && <figcaption>{item.imageCaption}</figcaption>}</figure>}
         <h3>My contribution</h3><ul>{item.contributions.map(text => <li key={text}>{text}</li>)}</ul>
         <div className="portfolio-tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-        <div className="portfolio-entry-links">{item.liveUrl && <a href={item.liveUrl}>{item.liveUrl.replace("https://", "")}</a>}{item.caseStudy && <a href={`https://sayed5atab-gilt.vercel.app${item.caseStudy}`}>Read the full case study ↗</a>}</div>
+        <div className="portfolio-entry-links">{item.liveUrl && <a href={item.liveUrl}>{item.liveUrl.replace("https://", "")}</a>}{item.caseStudy && <a href={`https://sayedesmail.com${item.caseStudy}`}>Read the full case study ↗</a>}</div>
     </article>;
 }
 
@@ -36,7 +36,7 @@ export default function PortfolioPage() {
                 <p className="portfolio-kicker">Senior Frontend / Full-Stack Engineer · Cairo</p><h1>Interfaces that<br />make complex<br /><em>products work.</em></h1>
                 <p className="portfolio-summary">I build and lead the frontends behind SaaS products: live fleet tracking at Routz, a multi-tenant innovation platform at Untap, and my own tutoring marketplace, Zads. Vue, React, Next.js, and TypeScript, with Arabic and English interfaces built right-to-left first.</p>
                 <div className="portfolio-cover-grid"><div><strong>Company work</strong><p>Schoolz / Routz<br />Untap · AutoTager · Botme<br />MoreCreative · Enjaz · MTC · Webdivs</p></div><div><strong>Freelance projects</strong><p>Zads · Fleet Billing · Yanfaa · Wellpal<br />FundSeer · Kadouscope · Movex</p></div></div>
-                <div className="portfolio-cover-contact"><strong>Sayed Esmail · Cairo, Egypt</strong><a href="mailto:5atab.work@gmail.com">5atab.work@gmail.com</a><a href="https://www.linkedin.com/in/sayed-esmail-khattab">linkedin.com/in/sayed-esmail-khattab</a><a href="https://sayed5atab-gilt.vercel.app/">sayed5atab-gilt.vercel.app</a><a href="https://github.com/SayedEsmail">github.com/SayedEsmail</a></div>
+                <div className="portfolio-cover-contact"><strong>Sayed Esmail · Cairo, Egypt</strong><a href="mailto:5atab.work@gmail.com">5atab.work@gmail.com</a><a href="https://www.linkedin.com/in/sayed-esmail-khattab">linkedin.com/in/sayed-esmail-khattab</a><a href="https://sayedesmail.com/">sayedesmail.com</a><a href="https://github.com/SayedEsmail">github.com/SayedEsmail</a></div>
                 <div className="portfolio-page-bottom"><span>Company experience · Freelance delivery · Product ownership</span><span>01</span></div>
             </section>
             {featured.map((item, index) => <section key={item.slug} className="portfolio-sheet"><div className="portfolio-page-top"><span>COMPANY WORK</span><span>SAYED ESMAIL</span></div><Entry item={item} /><div className="portfolio-page-bottom"><span>{item.title} / Selected work</span><span>{String(index + 2).padStart(2, "0")}</span></div></section>)}

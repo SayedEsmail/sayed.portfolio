@@ -2,7 +2,7 @@
 
 Personal portfolio of Sayed Esmail, Senior Frontend Engineer (Vue/Nuxt, React/Next.js, TypeScript), Cairo.
 
-Live: **https://sayed5atab-gilt.vercel.app/**
+Live: **https://sayedesmail.com/** (the old `sayed5atab-gilt.vercel.app` address redirects here)
 
 - `/` featured case studies, `/projects` and `/projects/[slug]` company and freelance work (data in `src/data/`), `/about`, `/articles`.
 - `/portfolio` is a print layout of the same work data; it is exported to `public/Sayed_Esmail_Portfolio.pdf` and linked from the site.
