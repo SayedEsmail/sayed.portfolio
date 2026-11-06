@@ -30,16 +30,18 @@ export const metadata: Metadata = {
     keywords: ["Senior Frontend Engineer", "Vue 3 Developer", "Next.js Portfolio", "Vuetify 3", "React Developer", "Cairo", "Software Architecture"],
     authors: [{ name: "Sayed Esmail" }],
     metadataBase: new URL("https://sayedesmail.com"),
+    alternates: { canonical: "/" },
     openGraph: {
-        title: "Sayed Esmail | Senior Frontend Engineer",
+        title: "Sayed Esmail | Senior Frontend / Full-Stack Engineer, Cairo",
         description: "Vue, React, and Next.js products: live fleet tracking at Routz, multi-tenant SaaS at Untap, and Arabic/English interfaces built right-to-left first.",
+        url: "https://sayedesmail.com",
         type: "website",
         locale: "en_US",
-        siteName: "Sayed Esmail Portfolio",
+        siteName: "Sayed Esmail",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Sayed Esmail | Senior Frontend Engineer",
+        title: "Sayed Esmail | Senior Frontend / Full-Stack Engineer, Cairo",
         description: "Vue, React, and Next.js products: live fleet tracking, multi-tenant SaaS, Arabic/English interfaces.",
     },
     robots: {
