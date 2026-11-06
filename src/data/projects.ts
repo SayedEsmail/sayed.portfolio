@@ -58,15 +58,39 @@ export const projects: Project[] = [
         description:
             "Schoolz's cloud platform for school and corporate transport: trips, routes, live vehicle tracking, passenger subscriptions, and operator-to-driver-to-passenger communication. I built the Vue 3 web application from the ground up and own its frontend delivery and real-time layer.",
         tags: ["Vue 3", "Node.js sockets", "GPS tracking", "In-app chat", "PayTabs", "Arabic/English"],
-        heroImage: "/projects/routz/live-tracking.png",
+        heroImage: "/projects/routz/dashboard-overview.jpg",
         screenshots: [
             {
-                src: "/projects/routz/live-tracking.png",
-                alt: "Live tracking map in the operator dashboard, with the socket connection status and trip filter",
+                src: "/projects/routz/dashboard-overview.jpg",
+                alt: "Operator dashboard: today's trips, passengers, subscriptions and invoices, a priority queue, and the live map",
             },
             {
-                src: "/projects/routz/trips-logs.png",
-                alt: "Trip logs: direction, vehicle, driver, assistant, passengers, distance, and status per trip",
+                src: "/projects/routz/live-tracking.jpg",
+                alt: "Live tracking: active trips list with the socket status, filters by school, government and direction, and the vehicle map",
+            },
+            {
+                src: "/projects/routz/manage-operations.jpg",
+                alt: "Manage operations: daily trips with captain, vehicle, status and schedule, plus unassigned passengers and requests queues",
+            },
+            {
+                src: "/projects/routz/subscriptions.jpg",
+                alt: "Subscriptions: package, billing period, amount, approval status and end date per family",
+            },
+            {
+                src: "/projects/routz/payment-methods.jpg",
+                alt: "Payment methods: offline methods that require approval next to PayTabs gateways for cards, wallets and installments",
+            },
+            {
+                src: "/projects/routz/pay-link-settings.jpg",
+                alt: "Pay link settings: each operator gets a public pay portal URL and can require a verification code",
+            },
+            {
+                src: "/projects/routz/pay-portal.jpg",
+                alt: "The public pay portal where a parent opens their balance with a phone number and pays online",
+            },
+            {
+                src: "/projects/routz/dashboard-arabic.jpg",
+                alt: "The same dashboard in Arabic, fully mirrored for right-to-left reading",
             },
             {
                 src: "/projects/routz/mobile-apps.png",
@@ -74,7 +98,7 @@ export const projects: Project[] = [
             },
         ],
         screenshotNote:
-            "Dashboard screenshots are from a demo tenant with little data. The mobile screens are taken from the public site at routz.me.",
+            "Dashboard screens are from the production operator app of a live tenant, captured in November 2026 outside school hours. Parent, child and driver names and plate numbers are pixelated. The mobile screens are from the public site at routz.me.",
         role: "Senior Full-Stack Engineer at Schoolz",
         period: "Jan 2025 – present",
         team: "Part-time consultant until Apr 2026, full-time since May 2026. I own the web frontend and the real-time services.",
