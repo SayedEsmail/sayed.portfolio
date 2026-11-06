@@ -32,7 +32,7 @@ export default function Navbar() {
                             <path d="M8 7 3 12l5 5" /><path d="m16 7 5 5-5 5" /><path d="m13.5 5-3 14" />
                         </svg>
                     </span>
-                    <strong className="text-lg font-extrabold tracking-[.5px] text-[#F3F4F6]">SAYED.DEV</strong>
+                    <strong className="text-lg font-extrabold tracking-[.5px] text-[#F3F4F6]">Sayed Esmail</strong>
                 </Link>
 
                 <nav aria-label={t.label} className="hidden min-[900px]:flex items-center gap-5 xl:gap-7">
