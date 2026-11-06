@@ -77,11 +77,11 @@ export const work: WorkItem[] = [
         period: "Jan 2022–Dec 2022",
         role: "Frontend Engineer",
         description:
-            "An automotive B2B marketplace with admin, client, and dealer dashboards for analytics, inventory, and multi-tenant listings.",
+            "A B2B automotive marketplace where dealers list inventory and admins and clients work from data-dense dashboards. I built the React frontend for all three.",
         contributions: [
-            "Built data-dense dashboards for administrators, clients, and dealers.",
-            "Developed a vehicle-inspection workflow for photo uploads, condition scoring, and structured reports before publication.",
-            "Turned Figma designs into a reusable React component library.",
+            "Built the admin, client, and dealer dashboards in React: analytics, inventory, and multi-tenant listings.",
+            "Developed the vehicle-inspection workflow: photo uploads, condition scoring, and a structured report that a listing has to pass before it goes live.",
+            "Turned the Figma designs into a reusable React component library, which cut design-to-development handoff time by 50%.",
         ],
         tags: ["React", "B2B marketplace", "Dashboards", "Vehicle inspection"],
         image: {
@@ -98,11 +98,11 @@ export const work: WorkItem[] = [
         period: "Jan 2018–Jan 2022",
         role: "Frontend Engineer",
         description:
-            "An omnichannel chatbot builder with workflow automation, live chat, and commerce experiences.",
+            "An omnichannel chatbot builder used by 5,000+ active businesses a month, with workflow automation, live chat, and commerce. I spent four years on its frontend.",
         contributions: [
-            "Built and improved chatbot-building, workflow automation, live-chat, and commerce features using Vue.js and Angular.",
-            "Contributed to Botme Shops, an automated e-commerce module featured at Facebook F8 Refresh 2021.",
-            "Designed user flows for visual automation and interactive forms.",
+            "Built and improved the bot builder, workflow automation, live chat, and commerce features in Vue.js and Angular, for a product with 5,000+ active business users a month.",
+            "Contributed to Botme Shops, the automated e-commerce module that Facebook featured at F8 Refresh 2021.",
+            "Designed the user flows for the visual automation editor and the interactive forms.",
         ],
         tags: ["Vue.js", "Angular", "Chatbots", "Workflow automation", "E-commerce"],
         image: {
@@ -118,10 +118,10 @@ export const work: WorkItem[] = [
         period: "2014–2018",
         role: "Frontend / Web Developer",
         description:
-            "Custom website and storefront work for clients across the MENA region.",
+            "Where I started: client websites and storefronts at four agencies, including Enjaz in Saudi Arabia and MTC in Qatar, for customers across the MENA region.",
         contributions: [
-            "Designed and built WordPress, WooCommerce, and Shopify websites and storefronts.",
-            "Integrated third-party APIs for client projects.",
+            "Designed and built WordPress, WooCommerce, and Shopify websites and storefronts for agency clients.",
+            "Integrated third-party APIs into client sites.",
         ],
         tags: ["WordPress", "WooCommerce", "Shopify", "API integration"],
         image: {
@@ -138,7 +138,7 @@ export const work: WorkItem[] = [
         period: "2024–Present",
         role: "Founder & Full-Stack Engineer",
         description:
-            "A learning marketplace connecting families and learners with nearby teachers. Migrated from Nuxt 3 to Next.js 16 App Router; source is public on GitHub.",
+            "My own learning marketplace: families and learners find nearby teachers and request lessons. Started on Nuxt 3, now on Next.js 16 App Router, with the source public on GitHub.",
         contributions: [
             "Built the backend using Node.js, Express, Prisma ORM, and PostgreSQL, with HTTP integration tests that run in CI before every deploy.",
             "Developed geo-proximity search to match learners with nearby teachers using location mapping and distance routing.",
@@ -186,11 +186,10 @@ export const work: WorkItem[] = [
         employer: "Freelance client project",
         role: "Frontend Developer",
         description:
-            "A full UI redesign implemented as a responsive HTML and CSS experience.",
+            "A full redesign of the Yanfaa website, which I implemented as responsive HTML and CSS.",
         contributions: [
-            "Redesigned the user interface across the experience.",
-            "Implemented responsive layouts with HTML and CSS.",
-            "Addressed frontend performance as part of the redesign work.",
+            "Redesigned the interface across the site and implemented it as responsive HTML and CSS layouts for desktop and mobile.",
+            "Kept frontend performance in scope throughout the redesign, not as an afterthought.",
         ],
         tags: ["HTML", "CSS", "Responsive design", "Performance"],
         image: {
@@ -208,10 +207,10 @@ export const work: WorkItem[] = [
         employer: "Freelance client project",
         role: "Frontend Developer",
         description:
-            "A custom Sylius storefront focused on the customer shopping experience.",
+            "A custom storefront on the Sylius commerce platform, shaped around the customer's shopping journey.",
         contributions: [
-            "Aligned the storefront interface with UX research and business goals.",
-            "Built a custom frontend experience for the Sylius commerce platform.",
+            "Built the custom storefront frontend on Sylius.",
+            "Shaped the storefront interface from UX research and the client's business goals.",
         ],
         tags: ["Sylius", "E-commerce", "Storefront UX"],
         image: {
@@ -229,11 +228,11 @@ export const work: WorkItem[] = [
         employer: "Freelance client project",
         role: "Frontend Developer",
         description:
-            "Marketing websites and a secure investor dashboard, with attention to performance and scalability.",
+            "Marketing websites and a secure investor dashboard for FundSeer, built with performance and scalability in mind.",
         contributions: [
-            "Built marketing website experiences.",
-            "Developed a secure dashboard for investors.",
-            "Worked on frontend performance and scalability for the product experience.",
+            "Built the marketing websites.",
+            "Developed the secure dashboard investors sign in to.",
+            "Worked on frontend performance and scalability as the product grew.",
         ],
         tags: ["Marketing websites", "Investor dashboard", "Security", "Performance", "Scalability"],
         image: {
@@ -248,10 +247,10 @@ export const work: WorkItem[] = [
         employer: "Freelance client project",
         role: "Frontend Developer",
         description:
-            "A React frontend for analytics workflows, built with attention to rendering, responsive behavior, and visual consistency.",
+            "A frontend overhaul of a complex React analytics dashboard: faster rendering, responsive layouts, and one consistent look.",
         contributions: [
             "Overhauled the frontend of a complex analytics dashboard in React.",
-            "Optimized rendering speed, responsive usability, and visual consistency.",
+            "Improved rendering speed, responsive behavior, and visual consistency across the dashboard.",
         ],
         tags: ["React", "Analytics", "Responsive design", "Rendering"],
         image: {
@@ -267,9 +266,9 @@ export const work: WorkItem[] = [
         period: "2020",
         role: "Frontend Developer",
         description:
-            "A logistics experience for shipment tracking, with responsive interfaces connected to a tracking API.",
+            "A shipment-tracking interface for a logistics company, connected to its tracking API.",
         contributions: [
-            "Built responsive frontend views for shipment tracking.",
+            "Built the responsive frontend views for shipment tracking.",
             "Integrated the shipment-tracking API into the interface.",
         ],
         tags: ["Logistics", "Shipment tracking", "API integration", "Responsive design"],
