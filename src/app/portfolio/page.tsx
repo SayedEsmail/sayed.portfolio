@@ -33,8 +33,8 @@ export default function PortfolioPage() {
         <div className="portfolio-document">
             <section className="portfolio-sheet portfolio-cover">
                 <div className="portfolio-page-top"><span>SAYED ESMAIL</span><span>SELECTED WORK / 2026</span></div>
-                <p className="portfolio-kicker">Senior Frontend Engineer</p><h1>Interfaces that<br />make complex<br /><em>products work.</em></h1>
-                <p className="portfolio-summary">10+ years building frontend experiences across SaaS, logistics, education, commerce, and automation. Vue.js, React, TypeScript, and a focus on product delivery.</p>
+                <p className="portfolio-kicker">Senior Frontend / Full-Stack Engineer · Cairo</p><h1>Interfaces that<br />make complex<br /><em>products work.</em></h1>
+                <p className="portfolio-summary">I build and lead the frontends behind SaaS products: live fleet tracking at Routz, a multi-tenant innovation platform at Untap, and my own tutoring marketplace, Zads. Vue, React, Next.js, and TypeScript, with Arabic and English interfaces built right-to-left first.</p>
                 <div className="portfolio-cover-grid"><div><strong>Company work</strong><p>Schoolz / Routz<br />Untap · AutoTager · Botme<br />MoreCreative · Enjaz · MTC · Webdivs</p></div><div><strong>Freelance projects</strong><p>Zads · Fleet Billing · Yanfaa · Wellpal<br />FundSeer · Kadouscope · Movex</p></div></div>
                 <div className="portfolio-cover-contact"><strong>Sayed Esmail · Cairo, Egypt</strong><a href="mailto:5atab.work@gmail.com">5atab.work@gmail.com</a><a href="https://www.linkedin.com/in/sayed-esmail-khattab">linkedin.com/in/sayed-esmail-khattab</a><a href="https://sayed5atab-gilt.vercel.app/">sayed5atab-gilt.vercel.app</a><a href="https://github.com/SayedEsmail">github.com/SayedEsmail</a></div>
                 <div className="portfolio-page-bottom"><span>Company experience · Freelance delivery · Product ownership</span><span>01</span></div>

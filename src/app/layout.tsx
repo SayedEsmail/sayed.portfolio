@@ -24,15 +24,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     title: {
         template: "%s | Sayed Esmail",
-        default: "Sayed Esmail | Senior Frontend Engineer & Full-Stack Developer",
+        default: "Sayed Esmail | Senior Frontend / Full-Stack Engineer, Cairo",
     },
-    description: "Senior Frontend Engineer specializing in highly responsive, interactive Vue & React application architectures, multi-tenant B2B/B2C SaaS, and performance optimization.",
+    description: "Senior Frontend / Full-Stack Engineer in Cairo. Vue, React, and Next.js products: live fleet tracking at Routz, multi-tenant SaaS at Untap, and Arabic/English interfaces built right-to-left first.",
     keywords: ["Senior Frontend Engineer", "Vue 3 Developer", "Next.js Portfolio", "Vuetify 3", "React Developer", "Cairo", "Software Architecture"],
     authors: [{ name: "Sayed Esmail" }],
     metadataBase: new URL("https://sayed5atab-gilt.vercel.app"),
     openGraph: {
         title: "Sayed Esmail | Senior Frontend Engineer",
-        description: "Senior Frontend Engineer specializing in highly responsive, interactive Vue & React application architectures, multi-tenant B2B/B2C SaaS, and performance optimization.",
+        description: "Vue, React, and Next.js products: live fleet tracking at Routz, multi-tenant SaaS at Untap, and Arabic/English interfaces built right-to-left first.",
         type: "website",
         locale: "en_US",
         siteName: "Sayed Esmail Portfolio",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Sayed Esmail | Senior Frontend Engineer",
-        description: "Senior Frontend Engineer specializing in highly responsive, interactive Vue & React application architectures.",
+        description: "Vue, React, and Next.js products: live fleet tracking, multi-tenant SaaS, Arabic/English interfaces.",
     },
     robots: {
         index: true,

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/data/projects";
 import FadeIn from "@/components/FadeIn";
 import Glow from "@/components/Glow";
-import { wrap, bandBase, bandAlt, card, panel, eyebrow, h1Cls, btnPrimary, btnSecondary } from "@/components/ui";
+import { wrap, bandBase, bandAlt, card, panel, eyebrow, h1Cls, btnPrimary, btnSecondary, tagCls } from "@/components/ui";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: PageProps) {
                     <FadeIn delay={100}>
                         <Link href="/projects" className="group inline-flex items-center gap-2 text-sm font-bold text-[#F0801A]">
                             <span aria-hidden="true" className="motion-safe:transition-transform motion-safe:duration-200 group-hover:-translate-x-1">←</span>
-                            Back to All Work
+                            Back to all work
                         </Link>
                     </FadeIn>
                     <div className="flex flex-col gap-4 max-w-[900px]">
@@ -74,6 +74,23 @@ export default async function ProjectPage({ params }: PageProps) {
                         <FadeIn delay={400}>
                             <p className="m-0 text-lg sm:text-xl leading-[1.8] text-[#C9D0DC]">{project.subtitle}</p>
                         </FadeIn>
+                        {(project.period || project.team) && (
+                            <FadeIn delay={420}>
+                                <dl className="m-0 flex flex-wrap gap-x-8 gap-y-2 text-sm text-[#9AA3B2]">
+                                    {project.period && (
+                                        <div className="flex gap-2"><dt className="font-bold text-[#F3F4F6]">When</dt><dd className="m-0">{project.period}</dd></div>
+                                    )}
+                                    {project.team && (
+                                        <div className="flex gap-2"><dt className="font-bold text-[#F3F4F6]">Team</dt><dd className="m-0">{project.team}</dd></div>
+                                    )}
+                                </dl>
+                            </FadeIn>
+                        )}
+                        <FadeIn delay={430}>
+                            <ul className="m-0 p-0 list-none flex flex-wrap gap-2" aria-label="Technologies">
+                                {project.tags.map((tag) => <li key={tag} className={tagCls}>{tag}</li>)}
+                            </ul>
+                        </FadeIn>
                     </div>
 
                     {/* External Action Links */}
@@ -82,12 +99,12 @@ export default async function ProjectPage({ params }: PageProps) {
                             <div className="flex flex-wrap items-center gap-4">
                                 {project.liveUrl && (
                                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={btnPrimary}>
-                                        Live Platform <span aria-hidden="true">↗</span>
+                                        Visit the product <span aria-hidden="true">↗</span>
                                     </a>
                                 )}
                                 {project.githubUrl && (
                                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={btnSecondary}>
-                                        GitHub Code <span aria-hidden="true">↗</span>
+                                        Source on GitHub <span aria-hidden="true">↗</span>
                                     </a>
                                 )}
                             </div>
@@ -115,10 +132,31 @@ export default async function ProjectPage({ params }: PageProps) {
                 <div className={`${wrap} pt-[72px] pb-[72px] grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-14 items-start`}>
                     {/* Main Content Column */}
                     <div className="lg:col-span-2 flex flex-col gap-14">
+                        {/* Summary */}
+                        {project.summary && (
+                            <FadeIn>
+                                <section aria-labelledby="summary-heading" className="scroll-mt-24 flex flex-col gap-4">
+                                    <h2 id="summary-heading" className={h2}>In short</h2>
+                                    <p className={`m-0 ${para}`}>{project.summary}</p>
+                                </section>
+                            </FadeIn>
+                        )}
+
+                        {/* My role */}
+                        {project.scope && (
+                            <FadeIn>
+                                <section aria-labelledby="scope-heading" className="scroll-mt-24 flex flex-col gap-4">
+                                    <h2 id="scope-heading" className={h2}>My role and scope</h2>
+                                    <p className={`m-0 ${para}`}>{project.scope}</p>
+                                    {project.leadership && <p className={`m-0 ${para}`}>{project.leadership}</p>}
+                                </section>
+                            </FadeIn>
+                        )}
+
                         {/* The Problem */}
                         <FadeIn>
                             <section aria-labelledby="problem-heading" className="scroll-mt-24 flex flex-col gap-4">
-                                <h2 id="problem-heading" className={h2}>The Problem Statement</h2>
+                                <h2 id="problem-heading" className={h2}>The problem</h2>
                                 <div className={`${para} space-y-6`}>
                                     {project.problem.split('\n\n').map((p, i) => (
                                         <p key={i} className="m-0">{p}</p>
@@ -130,7 +168,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* System Architecture */}
                         <FadeIn>
                             <section aria-labelledby="architecture-heading" className="scroll-mt-24 flex flex-col gap-4">
-                                <h2 id="architecture-heading" className={h2}>System Architecture &amp; Strategy</h2>
+                                <h2 id="architecture-heading" className={h2}>How it is built</h2>
                                 <div className={`${para} space-y-6`}>
                                     {project.architecture.split('\n\n').map((p, i) => (
                                         <p key={i} className="m-0 whitespace-pre-line">{p}</p>
@@ -149,7 +187,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* Key Technical Decisions */}
                         <FadeIn>
                             <section aria-labelledby="decisions-heading" className="scroll-mt-24 flex flex-col gap-5">
-                                <h2 id="decisions-heading" className={h2}>Key Technical Decisions</h2>
+                                <h2 id="decisions-heading" className={h2}>Key decisions</h2>
                                 <div className="grid sm:grid-cols-2 gap-5">
                                     {project.keyDecisions.map((dec, i) => (
                                         <div key={i} className={`${card} p-6 flex flex-col gap-3`}>
@@ -167,11 +205,8 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* Business & Product Outcomes */}
                         <FadeIn>
                             <section aria-labelledby="business-impact-heading" className="scroll-mt-24 flex flex-col gap-4">
-                                <h2 id="business-impact-heading" className={h2}>Business &amp; Product Outcomes</h2>
+                                <h2 id="business-impact-heading" className={h2}>What it changed for the product</h2>
                                 <div className={`${panel} p-6 flex flex-col gap-4`}>
-                                    <p className="m-0 text-sm text-[#9AA3B2]">
-                                        The product capabilities and improvements delivered through this work:
-                                    </p>
                                     <ul className="contribution-list m-0 !text-base">
                                         {project.businessImpact.map((item, i) => (
                                             <li key={i}>{item}</li>
@@ -184,7 +219,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* Engineering Challenges & Solutions */}
                         <FadeIn>
                             <section aria-labelledby="challenges-heading" className="scroll-mt-24 flex flex-col gap-5">
-                                <h2 id="challenges-heading" className={h2}>Engineering Challenges &amp; Solutions</h2>
+                                <h2 id="challenges-heading" className={h2}>Hard parts and how I solved them</h2>
                                 <div className="flex flex-col gap-5">
                                     {project.challenges.map((c, i) => (
                                         <div key={i} className={`${panel} p-6 flex flex-col gap-4`}>
@@ -195,7 +230,7 @@ export default async function ProjectPage({ params }: PageProps) {
                                                 <h3 className="m-0 text-lg font-extrabold leading-[1.6] text-[#F3F4F6]">{c.title}</h3>
                                             </div>
                                             <div className="ms-3 ps-6 border-s border-[#232836] text-[15px] leading-[1.8] text-[#C9D0DC]">
-                                                <span className="block mb-1.5 text-[11px] font-bold uppercase tracking-[.14em] text-[#F0801A]">Engineered Solution</span>
+                                                <span className="block mb-1.5 text-[11px] font-bold uppercase tracking-[.14em] text-[#F0801A]">What I did</span>
                                                 {c.solution}
                                             </div>
                                         </div>
@@ -203,6 +238,16 @@ export default async function ProjectPage({ params }: PageProps) {
                                 </div>
                             </section>
                         </FadeIn>
+
+                        {/* Reflection */}
+                        {project.reflection && (
+                            <FadeIn>
+                                <section aria-labelledby="reflection-heading" className="scroll-mt-24 flex flex-col gap-4">
+                                    <h2 id="reflection-heading" className={h2}>What I would do differently</h2>
+                                    <p className={`m-0 ${para}`}>{project.reflection}</p>
+                                </section>
+                            </FadeIn>
+                        )}
                     </div>
 
                     {/* Sidebar Column */}
@@ -210,7 +255,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* Tech Stack Visual Breakdown */}
                         <FadeIn>
                             <section aria-labelledby="stack-heading" className={`${panel} p-6`}>
-                                <h2 id="stack-heading" className={`m-0 mb-4 ${eyebrow}`}>Tech Stack Roles</h2>
+                                <h2 id="stack-heading" className={`m-0 mb-4 ${eyebrow}`}>Stack and what each part does</h2>
                                 <ul className="m-0 p-0 list-none flex flex-col gap-4">
                                     {project.stack.map((item, i) => (
                                         <li key={i} className="flex flex-col gap-1 pb-4 border-b border-[#232836] last:border-b-0 last:pb-0">
@@ -228,7 +273,7 @@ export default async function ProjectPage({ params }: PageProps) {
                         {/* Impact & Performance Metrics */}
                         <FadeIn>
                             <section aria-labelledby="impact-heading" className={`${panel} p-6`}>
-                                <h2 id="impact-heading" className={`m-0 mb-4 ${eyebrow}`}>Delivery Highlights</h2>
+                                <h2 id="impact-heading" className={`m-0 mb-4 ${eyebrow}`}>Highlights</h2>
                                 <div className="flex flex-col gap-3">
                                     {project.impact.map((metric, i) => (
                                         <div key={i} className="p-4 rounded-xl border border-[#232836] bg-[#0F1218] flex flex-col gap-1">
@@ -248,7 +293,8 @@ export default async function ProjectPage({ params }: PageProps) {
                 <section aria-labelledby="gallery-heading" className={`${bandBase} scroll-mt-24`}>
                     <div className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-8`}>
                         <FadeIn>
-                            <h2 id="gallery-heading" className="m-0 text-3xl sm:text-4xl font-extrabold text-[#F3F4F6]">Production Interface Walkthrough</h2>
+                            <h2 id="gallery-heading" className="m-0 text-3xl sm:text-4xl font-extrabold text-[#F3F4F6]">Screens</h2>
+                            {project.screenshotNote && <p className="m-0 mt-3 text-sm leading-[1.8] text-[#9AA3B2] max-w-[760px]">{project.screenshotNote}</p>}
                         </FadeIn>
                         <div className="grid md:grid-cols-2 gap-5">
                             {project.screenshots.map((screen, i) => (
@@ -280,15 +326,15 @@ export default async function ProjectPage({ params }: PageProps) {
                         <div className={`${panel} p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6`}>
                             <div className="flex flex-col gap-2">
                                 <h2 id="cta-heading" className="m-0 text-xl md:text-2xl font-extrabold text-[#F3F4F6]">
-                                    Interested in similar architecture challenges?
+                                    Working on a similar product?
                                 </h2>
                                 <p className="m-0 text-sm leading-[1.8] text-[#9AA3B2] max-w-xl">
-                                    If your team is scaling systems and seeks senior engineer positioning with robust product-centric workflows, let&apos;s talk.
+                                    If you need someone to own a product frontend, lead a frontend team, or ship an Arabic and English interface, let&apos;s talk.
                                 </p>
                             </div>
                             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto shrink-0">
-                                <a href="mailto:5atab.work@gmail.com" className={`${btnPrimary} text-center`}>Email Sayed</a>
-                                <a href="https://www.linkedin.com/in/sayed-esmail-khattab" target="_blank" rel="noopener noreferrer" className={`${btnSecondary} text-center`}>View LinkedIn</a>
+                                <a href="mailto:5atab.work@gmail.com" className={`${btnPrimary} text-center`}>Email me</a>
+                                <a href="https://www.linkedin.com/in/sayed-esmail-khattab" target="_blank" rel="noopener noreferrer" className={`${btnSecondary} text-center`}>LinkedIn</a>
                             </div>
                         </div>
                     </FadeIn>

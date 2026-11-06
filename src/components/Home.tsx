@@ -169,7 +169,7 @@ export default function Home() {
                     <div aria-hidden="true" className="hero-code bg-[#12151C]/90 border border-[#232836] rounded-2xl px-4 py-3.5 shadow-[0_20px_50px_rgba(0,0,0,.5)]" style={{ animation: "floaty 6s infinite .3s" }}>
                         <div dir="ltr" className="text-left font-mono text-[13px] leading-[2] text-[#C9D0DC]">
                             <div><span className="text-[#7C4DFF]">const</span> sayed = {"{"}</div>
-                            <div className="pl-5">role: <span className="text-[#17A36A]">&quot;Senior Frontend Engineer&quot;</span>,</div>
+                            <div className="pl-5">role: <span className="text-[#17A36A]">&quot;Senior Frontend / Full-Stack&quot;</span>,</div>
                             <div className="pl-5">stack: [<span className="text-[#17A36A]">&quot;Vue&quot;</span>, <span className="text-[#17A36A]">&quot;React&quot;</span>, <span className="text-[#17A36A]">&quot;Next&quot;</span>],</div>
                             <div className="pl-5">experience: <span className="text-[#17A36A]">&quot;10+ years&quot;</span>,</div>
                             <div className="pl-5">available: <span className="text-[#F0801A]">true</span><span className="inline-block w-2 h-4 bg-[#F0801A] ml-1 align-middle" style={{ animation: "blink 1s infinite" }} /></div>

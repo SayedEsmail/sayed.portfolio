@@ -15,7 +15,7 @@ export default function AboutPage() {
             <div className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-6`}>
                 <p className={`m-0 ${eyebrow}`}>Cairo, Egypt / Working since 2014</p>
                 <h1 className={h1Cls}>Engineering interfaces.<br /><span className="text-[#F0801A]">Understanding products.</span></h1>
-                <p className={`${lead} max-w-[650px] text-[17px]`}>I’m Sayed Esmail, a Senior Frontend Engineer with 10+ years of experience. I build Vue and React applications, lead frontend teams, and turn complex product requirements into interfaces people can use.</p>
+                <p className={`${lead} max-w-[650px] text-[17px]`}>I’m Sayed Esmail, a Senior Frontend / Full-Stack Engineer in Cairo. I started in 2014 building WordPress and Shopify sites for agencies in Egypt, Saudi Arabia, and Qatar, moved into product work at Botme and AutoTager, and have built and led the frontends of SaaS platforms since 2022: Untap, where I led the frontend team, and now Routz at Schoolz. I studied philosophy before I wrote code, which is probably why I care about naming things well.</p>
                 <DownloadLinks />
             </div>
         </header>
@@ -56,7 +56,7 @@ export default function AboutPage() {
         <section className={bandAlt} aria-labelledby="contact-heading">
             <div className={`${wrap} pt-[72px] pb-[72px] flex flex-col gap-3`}>
                 <h2 id="contact-heading" className={h2Cls}>Let’s work together.</h2>
-                <p className={lead}>For frontend engineering, product interfaces, and team leadership.</p>
+                <p className={lead}>Senior or lead frontend roles, product frontends that need an owner, and Arabic and English interfaces done right.</p>
                 <a className="self-start font-bold text-[#F0801A]" href="mailto:5atab.work@gmail.com">5atab.work@gmail.com ↗</a>
                 <ContactLinks className="mt-4" />
             </div>

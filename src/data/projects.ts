@@ -30,6 +30,20 @@ export interface Project {
     businessImpact: string[];
     keyDecisions: { decision: string; justification: string }[];
     role: string;
+    /** When the work happened, e.g. "Jan 2025 – present". */
+    period?: string;
+    /** One line on team context: who else was involved, what I owned. */
+    team?: string;
+    /** Three to five sentences: product, my role, headline result. Shown before the problem statement. */
+    summary?: string;
+    /** What I personally owned versus the rest of the team. */
+    scope?: string;
+    /** Leadership and team impact, for lead roles. */
+    leadership?: string;
+    /** What I would do differently. */
+    reflection?: string;
+    /** Provenance of the screenshots (demo tenant, public site, sample data). */
+    screenshotNote?: string;
     featured: boolean;
     order: number;
     liveUrl?: string;
@@ -40,85 +54,118 @@ export const projects: Project[] = [
     {
         slug: "routz",
         title: "Routz",
-        subtitle: "Fleet management for school transportation",
+        subtitle: "Fleet management and school transportation for operators, drivers, and families",
         description:
-            "A fleet-management and school-transportation SaaS product with admin and client dashboards. I build workflows for drivers, trips, billing, subscriptions, and live GPS tracking.",
-        tags: ["Vue 3", "Node.js sockets", "GPS tracking", "Mapping", "Arabic/English"],
+            "Schoolz's cloud platform for school and corporate transport: trips, routes, live vehicle tracking, passenger subscriptions, and operator-to-driver-to-passenger communication. I built the Vue 3 web application from the ground up and own its frontend delivery and real-time layer.",
+        tags: ["Vue 3", "Node.js sockets", "GPS tracking", "In-app chat", "PayTabs", "Arabic/English"],
         heroImage: "/projects/routz/live-tracking.png",
         screenshots: [
             {
                 src: "/projects/routz/live-tracking.png",
-                alt: "Routz live fleet tracking map",
+                alt: "Live tracking map in the operator dashboard, with the socket connection status and trip filter",
             },
             {
                 src: "/projects/routz/trips-logs.png",
-                alt: "Routz trip management interface",
+                alt: "Trip logs: direction, vehicle, driver, assistant, passengers, distance, and status per trip",
+            },
+            {
+                src: "/projects/routz/mobile-apps.png",
+                alt: "The passenger app with today's trips and the captain app after a completed trip, from routz.me",
             },
         ],
+        screenshotNote:
+            "Dashboard screenshots are from a demo tenant with little data. The mobile screens are taken from the public site at routz.me.",
         role: "Senior Full-Stack Engineer at Schoolz",
+        period: "Jan 2025 – present",
+        team: "Part-time consultant until Apr 2026, full-time since May 2026. I own the web frontend and the real-time services.",
+        summary:
+            "Routz is Schoolz's cloud platform for school and corporate transport in Egypt and the region. Operators plan routes and trips, follow vehicles live, and sell subscriptions to families; drivers and passengers use the Routz and Routz Captain mobile apps. I joined in January 2025 and built the Vue 3 web application from the first screen: the admin and client dashboards, the live tracking and chat layer over custom Node.js socket services, and the passenger subscription flow with online payment.",
         featured: true,
         order: 1,
         problem:
-            "School transportation teams need clear tools for coordinating drivers and trips, managing subscriptions and billing, and seeing active vehicles on a map.",
+            "A school or company transport team runs dozens of daily trips with drivers, assistants, stops, and passengers that change every week. The control room needs one live view of every active vehicle, families want to know where the bus is and to pay for their seat without calling the office, and drivers need clear instructions trip by trip. All of this has to work in Arabic and English, because the operators and families are in Egypt and the Gulf.\n\nWhen I joined, the web application did not exist yet. The brief was to build the operator dashboards from the ground up while the real-time features were designed at the same time.",
         architecture:
-            "The product is built in Vue 3 with admin and client dashboards. Custom Node.js socket services provide live trip and driver-location updates, while mapping and geocoding APIs support route planning and location search. Shared components and composables support a bilingual Arabic and English interface.",
-        architectureDiagram: `Vue 3 dashboards
-        ├── Driver, trip, billing, and subscription workflows
-        ├── Mapping and geocoding APIs
-        └── Custom Node.js socket services for live tracking`,
+            "The web application is a Vue 3 single-page app with two surfaces: an admin dashboard for Schoolz and a client dashboard for each operator. Both are built from one shared component library and a set of composables, so every screen works in Arabic (right-to-left) and English.\n\nLive data comes from custom Node.js socket services that I built end to end: the driver app pushes GPS positions, the services fan them out to the dashboards and the passenger app, and the same channel carries the in-app chat between operators, passengers, and drivers on web and mobile. Mapping and geocoding APIs provide route planning, stop search, and the live map. Passenger subscriptions run through an in-app flow (registration, package selection, PayTabs online payment) that feeds the operator's billing screens.",
+        architectureDiagram: `Routz web app (Vue 3, Arabic/English)
+        ├── Admin dashboard (Schoolz) · Client dashboard (operators)
+        ├── Shared components and composables (RTL-first)
+        └── Mapping and geocoding APIs (routes, stops, live map)
+                    │  socket events
+                    ▼
+Custom Node.js socket services (built end to end)
+        ├── Live GPS positions: driver app → dashboards and passenger app
+        └── In-app chat: operators ↔ passengers ↔ drivers (web and mobile)
+                    │
+                    ▼
+Subscriptions: in-app registration → package → PayTabs payment → billing`,
         stack: [
-            { name: "Vue 3", role: "Frontend for admin and client dashboards" },
-            { name: "Node.js socket services", role: "Live trip and driver-location updates" },
-            { name: "Mapping and geocoding APIs", role: "Route planning and location search" },
-            { name: "Arabic and English", role: "Bilingual interface" },
+            { name: "Vue 3", role: "Admin and client dashboards, built from the ground up" },
+            { name: "Node.js socket services", role: "Live trip and driver-location updates, in-app chat" },
+            { name: "Mapping and geocoding APIs", role: "Route planning, stop search, live map" },
+            { name: "PayTabs", role: "Online payment in the passenger subscription flow" },
+            { name: "Arabic and English", role: "Right-to-left first, shared components and composables" },
         ],
+        scope:
+            "I own the web frontend: the admin and client dashboards from the first commit, the shared component library, and the frontend workflows for drivers, trips, billing, and subscriptions. I also built the real-time layer across the stack: the socket services and the tracking and chat features that run in the dashboards and inside the mobile apps. The native mobile apps themselves are built by the mobile team.",
         challenges: [
             {
-                title: "Live trip visibility",
+                title: "A live view of every active trip",
                 solution:
-                    "Built a live GPS tracking interface connected to custom Node.js socket services so operators can follow active trips and driver locations.",
+                    "Built the live tracking map on top of custom Node.js socket services, so operators follow vehicles and driver locations as they move instead of refreshing a list.",
             },
             {
-                title: "Route and location workflows",
+                title: "Chat between operators, passengers, and drivers",
                 solution:
-                    "Integrated mapping and geocoding APIs for route planning, location search, and map interactions.",
+                    "Delivered the in-app chat end to end, backend and web frontend plus the mobile apps, over the same socket layer as tracking, so a question about a late bus reaches the driver and the office at once.",
             },
             {
-                title: "Operational workflows",
+                title: "Families paying without the office",
                 solution:
-                    "Delivered frontend workflows for driver management, trip scheduling, billing, and subscription management.",
+                    "Shipped the passenger self-service flow: registration, package selection, and online payment through PayTabs, connected to the operator's subscription and billing workflows.",
             },
             {
-                title: "Consistent bilingual UI",
+                title: "Routes and stops on a map",
                 solution:
-                    "Established shared Vue components and composables to support a consistent Arabic and English experience.",
+                    "Integrated mapping and geocoding APIs for route planning, location search, and map interactions in the trip and destination workflows.",
+            },
+            {
+                title: "One interface in two directions",
+                solution:
+                    "Established shared Vue components and composables that handle right-to-left layout and translation, so every new screen is bilingual by default.",
             },
         ],
         impact: [
             { metric: "Live operations", value: "GPS visibility into active trips and driver locations" },
-            { metric: "Core workflows", value: "Driver management, trip scheduling, billing, and subscriptions" },
-            { metric: "Shared frontend", value: "Reusable Vue components and composables for Arabic and English" },
+            { metric: "Communication", value: "In-app chat between operators, passengers, and drivers" },
+            { metric: "Payments", value: "Self-service subscriptions paid online through PayTabs" },
+            { metric: "Shared frontend", value: "One bilingual component library behind both dashboards" },
         ],
         businessImpact: [
-            "Gives operators a live view of active trips and driver locations.",
-            "Brings day-to-day driver, trip, billing, and subscription workflows into the product.",
-            "Supports customers using either Arabic or English.",
+            "Gives the control room a live view of active trips and driver locations.",
+            "Lets families register, choose a package, and pay online instead of calling the office.",
+            "Puts operators, passengers, and drivers in one chat thread per trip.",
+            "Serves operators and families in Arabic or English from the same code.",
         ],
         keyDecisions: [
             {
-                decision: "Connect tracking to socket services",
+                decision: "Custom socket services instead of polling",
                 justification:
-                    "Live trip and driver-location updates are central to the operator experience.",
+                    "Live positions and chat are the core of the operator experience; a push channel keeps the map current without hammering the API.",
             },
             {
-                decision: "Use mapping and geocoding APIs",
+                decision: "One shared component library for both dashboards",
                 justification:
-                    "Route planning and location search depend on accurate map interactions.",
+                    "Admin and client screens share tables, forms, and map widgets, so right-to-left and translation are solved once.",
             },
             {
-                decision: "Build shared Vue components and composables",
+                decision: "PayTabs for passenger payments",
                 justification:
-                    "Shared frontend patterns keep the bilingual dashboards consistent.",
+                    "A gateway used across Egypt and the Gulf lets families pay with local cards inside the app.",
+            },
+            {
+                decision: "Mapping and geocoding APIs rather than a custom map stack",
+                justification:
+                    "Route planning and stop search depend on accurate geocoding; the APIs let the team focus on the workflows around the map.",
             },
         ],
         liveUrl: "https://routz.me",
@@ -126,89 +173,153 @@ export const projects: Project[] = [
     {
         slug: "untap",
         title: "Untap",
-        subtitle: "Multi-tenant platform for innovation programs",
+        subtitle: "Multi-tenant platform for hiring, innovation programs, competitions, and grants",
         description:
-            "A multi-tenant SaaS platform for competitions, innovation programs, and grant management. Its Vue 3 codebase brings together admin, customer portal, and public-site experiences, with configurable forms and pages for client programs.",
-        tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "Vite", "Access control"],
-        heroImage: "/projects/untap/dashboard-overview.png",
+            "A multi-tenant SaaS platform that runs hiring campaigns, innovation challenges, awards, and grant programs. I led the Vue 3 frontend that serves the admin, customer portal, and public-site experiences, first as the main contributor and from January 2025 as Frontend Team Lead.",
+        tags: ["Vue 3", "Multi-tenant SaaS", "SurveyJS", "GrapesJS", "AI screening", "Stripe", "ISO 27001"],
+        heroImage: "/projects/untap/tour-admin-overview.png",
         screenshots: [
             {
-                src: "/projects/untap/dashboard-overview.png",
-                alt: "Untap platform dashboard overview",
+                src: "/projects/untap/tour-admin-overview.png",
+                alt: "Platform overview for one client: users, participants, programs, submissions, and traffic sources",
             },
             {
                 src: "/projects/untap/form-builder.png",
-                alt: "Untap form builder interface",
+                alt: "The customized SurveyJS submission-form builder inside a program round, from the production admin",
+            },
+            {
+                src: "/projects/untap/tour-site-builder.png",
+                alt: "Page builder on GrapesJS with the AI page builder that drafts a public page from a prompt",
+            },
+            {
+                src: "/projects/untap/tour-submissions.png",
+                alt: "Submissions in a hackathon round with progress, average score, and rank per entry",
+            },
+            {
+                src: "/projects/untap/tour-judge-view.png",
+                alt: "Judge view: scoring a submission against the evaluation form next to the entry preview",
+            },
+            {
+                src: "/projects/untap/tour-rounds-evaluation.png",
+                alt: "Program rounds with submission, evaluation, qualification, screening, and proctor settings",
+            },
+            {
+                src: "/projects/untap/tour-round-analysis.png",
+                alt: "Round analysis: exportable charts across submission answers",
+            },
+            {
+                src: "/projects/untap/tour-participant-view.png",
+                alt: "A client's public portal on its own subdomain, themed per client",
+            },
+            {
+                src: "/projects/untap/tour-applying.png",
+                alt: "Participant view: applying to a program through the configured submission form",
+            },
+            {
+                src: "/projects/untap/tour-spin-up-platform.png",
+                alt: "Creating a new client platform: title, language, timezone, and subdomain or custom domain",
             },
         ],
-        role: "Senior Frontend Engineer / Frontend Team Lead",
+        screenshotNote:
+            "The form builder screenshot is from the production admin. The other screens are from Untap's public product tour at untap.tech and show sample data.",
+        role: "Senior Frontend Engineer / Frontend Team Lead at Untap",
+        period: "Dec 2022 – Apr 2026",
+        team: "Frontend Team Lead from Jan 2025: architecture decisions, code reviews, and mentoring.",
+        summary:
+            "Untap gives organizations one platform to run hiring campaigns, innovation challenges, awards, and grant programs; its site reports more than 400 programs, one million participants, and 100 customers. Each client gets its own branded platform on a subdomain or custom domain. I joined in December 2022, became the main frontend contributor, and led the frontend team from January 2025 until I left in April 2026. The work ranged from the multi-tenant foundation to the AI layer, payments, performance, and the security remediation behind the company's ISO 27001 certificate.",
         featured: true,
         order: 2,
         problem:
-            "Organizations running competitions, innovation programs, and grants need tools to configure their programs and serve administrators, client teams, and public participants. Untap brings those experiences together while allowing client-specific themes, permissions, and runtime configuration.",
+            "A hiring team, an innovation office, and a national award run very different programs, yet all of them need the same building blocks: a branded public site, a submission form, rounds of evaluation with judges and rubrics, and reporting. Untap had to serve dozens of clients, each with its own theme, roles, domain, and configuration, from one product.\n\nOn the frontend that meant one codebase for three experiences (admin, customer dashboard, public portal), builders that program teams could use without developers, and dashboards that stayed fast as the data grew.",
         architecture:
-            "A Vue 3 codebase serves the admin, customer portal, and public-site experiences. The multi-tenant foundation supports per-client theming, permission roles, and runtime configuration. SurveyJS and GrapesJS provide customized form and page-building experiences; Vite build optimization, route-level code splitting, and state-management refactoring improved initial dashboard load time by 40%.",
-        architectureDiagram: `Vue 3 multi-tenant platform
-        ├── Admin, customer portal, and public-site experiences
-        ├── Client theming, permissions, and runtime configuration
-        ├── SurveyJS form builder and GrapesJS page builder
-        └── Vite build optimization and route-level code splitting`,
+            "One Vue 3 codebase serves the three experiences. At boot the app reads the subdomain and routes into the admin, the client dashboard, or the public portal; per-client theme, permission roles, and runtime configuration are loaded for that tenant, so dozens of distinct client deployments run from the same build.\n\nProgram teams configure their programs through two builders I customized heavily: a schema-driven submission and evaluation form builder on SurveyJS, and a drag-and-drop page builder on GrapesJS. On top of them I added an AI layer that generates forms and pages from a prompt and screens participant submissions before judge review. Stripe lets clients charge participants for submissions.\n\nInitial dashboard load dropped by 40% after Vite build optimization, route-level code splitting, and a state-management refactor. During the ISO 27001:2022 certification I owned the frontend remediation: auth tokens moved from localStorage to HTTP-only cookies and vulnerable dependencies were replaced until the audit passed.",
+        architectureDiagram: `One Vue 3 codebase, routed by subdomain at boot
+        ├── Admin (Untap staff)
+        ├── Client dashboard (per tenant: theme · roles · runtime config)
+        └── Public portal (program sites on client subdomains or custom domains)
+                    │
+        ┌───────────┴───────────┐
+   SurveyJS form builder    GrapesJS page builder
+   (submission · evaluation)  (public pages)
+        └───────────┬───────────┘
+          AI layer: generate from a prompt · screen submissions
+                    │
+   Stripe (paid submissions) · HTTP-only cookie auth (ISO 27001)`,
         stack: [
-            { name: "Vue 3", role: "Frontend platform across admin, customer, and public experiences" },
-            { name: "SurveyJS", role: "Customized schema-driven form builder" },
-            { name: "GrapesJS", role: "Customized drag-and-drop page builder" },
-            { name: "Vite", role: "Build optimization supporting faster dashboard loads" },
-            { name: "Access control", role: "Permission-based frontend access" },
+            { name: "Vue 3 + Vite", role: "One codebase for admin, customer, and public experiences; route-level code splitting" },
+            { name: "SurveyJS", role: "Customized schema-driven form builder for submissions and evaluation" },
+            { name: "GrapesJS", role: "Customized drag-and-drop page builder for public program pages" },
+            { name: "AI layer", role: "Forms and pages generated from a prompt; screening of submissions before judges" },
+            { name: "Stripe", role: "Paid submissions for client programs" },
+            { name: "Access control", role: "Permission roles per tenant, HTTP-only cookie sessions" },
         ],
+        scope:
+            "I owned the frontend architecture: the multi-tenant foundation, the builders and the AI layer on top of them, the Stripe integration, the performance work, and the security remediation. As Frontend Team Lead from January 2025 I made the architecture decisions, ran code reviews, and mentored the frontend engineers. Backend services and the AI models were built by other teams; I integrated them.",
+        leadership:
+            "Promoted to Frontend Team Lead in January 2025 after becoming the primary frontend contributor. I set the frontend standards, reviewed the team's pull requests, and paired with engineers on the harder pieces: tenant configuration, the builders, and the performance work.",
         challenges: [
             {
-                title: "Multi-tenant frontend foundation",
+                title: "Dozens of clients from one codebase",
                 solution:
-                    "Designed the foundation for client-specific theming, permission roles, and runtime configuration across admin, customer portal, and public-site experiences.",
+                    "Designed the multi-tenant foundation: subdomain-based routing into the three experiences, per-client theming, permission roles, and runtime configuration loaded per tenant.",
             },
             {
-                title: "Configurable program tools",
+                title: "Builders that non-developers can use",
                 solution:
-                    "Integrated and extensively customized SurveyJS and GrapesJS to deliver schema-driven forms and a drag-and-drop page builder.",
+                    "Integrated and extensively customized SurveyJS and GrapesJS, then added an AI layer so program teams generate a form or a public page from a prompt and let AI screen submissions before judges see them.",
             },
             {
-                title: "Dashboard loading performance",
+                title: "Dashboards that got slower as clients grew",
                 solution:
-                    "Reduced initial dashboard load time by 40% through Vite build optimization, route-level code splitting, and state-management refactoring.",
+                    "Cut initial dashboard load time by 40% with Vite build optimization, route-level code splitting, and a state-management refactor.",
             },
             {
-                title: "Frontend team leadership",
+                title: "Passing the ISO 27001:2022 audit on the frontend",
                 solution:
-                    "Owned frontend architecture decisions, code reviews, and engineer mentoring as Frontend Team Lead.",
+                    "Moved auth tokens from localStorage to HTTP-only cookies and replaced vulnerable dependencies, iterating with the auditors until the certificate was granted.",
+            },
+            {
+                title: "Charging participants",
+                solution:
+                    "Integrated Stripe so clients can charge participants for submissions as part of the program setup.",
             },
         ],
         impact: [
-            { metric: "Initial dashboard load", value: "40% faster after build, routing, and state-management changes" },
-            { metric: "Client configuration", value: "Theming, permission roles, and runtime configuration" },
-            { metric: "Program authoring", value: "Customized form and page builders for client teams" },
+            { metric: "Initial dashboard load", value: "40% faster after build, routing, and state changes" },
+            { metric: "Client deployments", value: "Dozens of branded platforms from one codebase" },
+            { metric: "Security", value: "Frontend remediation accepted for ISO 27001:2022" },
+            { metric: "Program authoring", value: "Form and page builders with AI generation and screening" },
         ],
         businessImpact: [
-            "Supports distinct client deployments from a shared frontend codebase.",
-            "Lets program teams configure forms and public pages through integrated builders.",
-            "Improved initial dashboard load time by 40% through frontend performance work.",
+            "Lets Untap onboard a new client as configuration, not a new deployment.",
+            "Lets program teams build forms and public pages themselves, with AI drafting the first version.",
+            "Opened paid submissions as a revenue option for clients through Stripe.",
+            "Contributed the frontend part of the company's ISO 27001:2022 certification.",
         ],
         keyDecisions: [
             {
-                decision: "Build a shared multi-tenant frontend foundation",
+                decision: "One codebase, routed by subdomain",
                 justification:
-                    "Admin, customer, and public experiences need to support per-client configuration within one Vue codebase.",
+                    "Admin, customer, and public experiences share components and tenant configuration; three apps would have tripled the work on every feature.",
             },
             {
-                decision: "Customize established form and page builders",
+                decision: "Customize established builders instead of writing our own",
                 justification:
-                    "SurveyJS and GrapesJS provide the basis for configurable program forms and pages.",
+                    "SurveyJS and GrapesJS already solve schema editing and drag-and-drop layout; our effort went into tenant theming, program logic, and the AI layer on top.",
             },
             {
-                decision: "Address dashboard load across build, routing, and state",
+                decision: "HTTP-only cookies over localStorage for auth",
                 justification:
-                    "The reported 40% improvement came from combining Vite optimization, route-level code splitting, and state-management refactoring.",
+                    "Tokens in localStorage are readable by any injected script; cookies the browser controls closed the finding raised in the ISO audit.",
+            },
+            {
+                decision: "Measure load before and after",
+                justification:
+                    "The 40% figure comes from comparing initial dashboard load before and after the Vite, routing, and state changes, not from an estimate.",
             },
         ],
+        reflection:
+            "Auth tokens lived in localStorage for the first years and the ISO audit forced the move to HTTP-only cookies. I would make that the default on day one, together with a dependency-audit step in CI, so security work is routine instead of a certification sprint.",
         liveUrl: "https://untap.tech",
     },
     {

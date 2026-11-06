@@ -27,7 +27,7 @@ export const work: WorkItem[] = [
         period: "Jan 2025–Present",
         role: "Senior Full-Stack Engineer",
         description:
-            "A fleet-management and school-transportation SaaS platform with admin and client dashboards.",
+            "Schoolz's fleet-management and school-transportation platform. I built the Vue 3 web application from the ground up, with admin and client dashboards, and own its real-time layer.",
         contributions: [
             "Built the real-time layer end to end: live GPS tracking of active trips and an in-app chat (web backend and frontend plus the mobile apps) connecting operators, passengers, and drivers over custom Node.js socket services.",
             "Shipped the passenger self-service subscription flow: in-app registration, package selection, and online payment through PayTabs, plus operator workflows for drivers, trips, and billing.",
@@ -53,8 +53,8 @@ export const work: WorkItem[] = [
         description:
             "A multi-tenant SaaS platform for competitions, innovation programs, and grant management, bringing admin, customer portal, and public-site experiences into one Vue codebase.",
         contributions: [
-            "Led frontend architecture, code reviews, and engineer mentoring.",
-            "Designed the multi-tenant foundation for client theming, permission roles, and runtime configuration.",
+            "Became the primary frontend contributor and was promoted to Frontend Team Lead in January 2025, owning architecture decisions, code reviews, and engineer mentoring.",
+            "Designed the multi-tenant foundation for client theming, permission roles, and runtime configuration, supporting dozens of distinct client deployments from one codebase.",
             "Delivered a schema-driven form builder and drag-and-drop page builder on SurveyJS and GrapesJS, then added an AI layer so clients generate forms and pages from a prompt and run AI screening of submissions before judge review.",
             "Integrated Stripe so clients can charge participants for submissions.",
             "Improved initial dashboard load time by 40% through Vite build optimization, route-level code splitting, and state-management refactoring.",
